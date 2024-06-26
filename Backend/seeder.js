@@ -56,7 +56,7 @@ const photos = [
         "slug": "foresta-in-autunno",
         "image": "https://example.com/images/foresta-in-autunno.jpg",
         "description": "Un'affascinante foresta in autunno con foglie colorate.",
-        "visible": true,
+        "visible": false,
         "categories": [1],
         "userId": 2
     },
@@ -86,7 +86,7 @@ const photos = [
         "slug": "viali-cittadini",
         "image": "https://example.com/images/viali-cittadini.jpg",
         "description": "Una vista panoramica di viali cittadini affollati.",
-        "visible": true,
+        "visible": false,
         "categories": [1, 2],
         "userId": 2
     },
