@@ -5,7 +5,9 @@ const dotenv = require("dotenv");
 // Importo i ruoter
 const photosRouter = require("./routers/photos.js");
 
-const categoriesRouter = require("./routers/categories.js")
+const categoriesRouter = require("./routers/categories.js");
+
+const messagesRouter = require("./routers/messages.js");
 
 const authRouter = require("./routers/auth.js");
 
@@ -34,6 +36,9 @@ app.use('/photos', photosRouter);
 
 // Router delle categorie
 app.use('/categories', categoriesRouter);
+
+// Router dei messaggi
+app.use('/messages', messagesRouter);
 
 // Avvio il server
 app.listen(port, host, () => {
