@@ -13,6 +13,7 @@ const authRouter = require("./routers/auth.js");
 
 // Importo i middlewares
 const errorHandler = require("./middlewares/errorHandler.js");
+const notFound = require("./middlewares/notFound.js");
 
 // Inizializzo express
 const app = express();
@@ -42,6 +43,9 @@ app.use('/categories', categoriesRouter);
 
 // Router dei messaggi
 app.use('/messages', messagesRouter);
+
+// notFound
+app.use(notFound);
 
 // errorHandler
 app.use(errorHandler);
