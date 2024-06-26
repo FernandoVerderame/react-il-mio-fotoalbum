@@ -1,6 +1,8 @@
 // Importo PrismaClient
 const { PrismaClient } = require("@prisma/client");
 
+const errorHandler = require("../middlewares/errorHandler.js");
+
 // Inizializzo Prisma
 const prisma = new PrismaClient();
 
@@ -38,7 +40,7 @@ const register = async (req, res) => {
         res.json({ token, data: user });
 
     } catch (err) {
-        console.error(err);
+        errorHandler(err, req, res);
     }
 }
 
@@ -74,7 +76,7 @@ const login = async (req, res) => {
         res.json({ token, data: user });
 
     } catch (err) {
-        console.error(err);
+        errorHandler(err, req, res);
     }
 }
 

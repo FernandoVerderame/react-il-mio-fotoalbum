@@ -1,6 +1,8 @@
 // Importo PrismaClient
 const { PrismaClient } = require("@prisma/client");
 
+const errorHandler = require("../middlewares/errorHandler.js");
+
 // Inizializzo Prisma
 const prisma = new PrismaClient();
 
@@ -18,7 +20,7 @@ const store = async (req, res, next) => {
         const category = await prisma.category.create({ data });
         res.status(200).send(category);
     } catch (err) {
-        console.error(err);
+        errorHandler(err, req, res);
     }
 
 }
@@ -30,7 +32,7 @@ const index = async (req, res, next) => {
         const categories = await prisma.category.findMany();
         res.json(categories);
     } catch (err) {
-        console.error(err);
+        errorHandler(err, req, res);
     }
 }
 
@@ -47,7 +49,7 @@ const show = async (req, res, next) => {
             throw new Error(`Category con id ${id} non trovata.`, 404);
         }
     } catch (err) {
-        console.error(err);
+        errorHandler(err, req, res);
     }
 }
 
@@ -61,7 +63,7 @@ const update = async (req, res, next) => {
         });
         res.json(category);
     } catch (err) {
-        console.error(err);
+        errorHandler(err, req, res);
     }
 }
 
@@ -75,7 +77,7 @@ const destroy = async (req, res, next) => {
         });
         res.json(`Category con id ${id} eliminata con successo.`);
     } catch (err) {
-        console.error(err);
+        errorHandler(err, req, res);
     }
 
 }

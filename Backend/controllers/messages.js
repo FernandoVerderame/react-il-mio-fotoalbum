@@ -1,6 +1,8 @@
 // Importo PrismaClient
 const { PrismaClient } = require("@prisma/client");
 
+const errorHandler = require("../middlewares/errorHandler.js");
+
 // Inizializzo Prisma
 const prisma = new PrismaClient();
 
@@ -19,7 +21,7 @@ const store = async (req, res, next) => {
         const message = await prisma.message.create({ data });
         res.status(200).send(message);
     } catch (err) {
-        console.error(err);
+        errorHandler(err, req, res);
     }
 
 }
@@ -31,7 +33,7 @@ const index = async (req, res, next) => {
         const messages = await prisma.message.findMany();
         res.json(messages);
     } catch (err) {
-        console.error(err);
+        errorHandler(err, req, res);
     }
 }
 
@@ -48,7 +50,7 @@ const show = async (req, res, next) => {
             throw new Error(`Messaggio con id ${id} non trovato.`, 404);
         }
     } catch (err) {
-        console.error(err);
+        errorHandler(err, req, res);
     }
 }
 
@@ -62,7 +64,7 @@ const destroy = async (req, res, next) => {
         });
         res.json(`Messaggio con id ${id} eliminato con successo.`);
     } catch (err) {
-        console.error(err);
+        errorHandler(err, req, res);
     }
 
 }

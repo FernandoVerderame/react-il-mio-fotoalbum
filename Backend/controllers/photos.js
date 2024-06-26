@@ -1,6 +1,8 @@
 // Importo PrismaClient
 const { PrismaClient } = require("@prisma/client");
 
+const errorHandler = require("../middlewares/errorHandler.js");
+
 // Inizializzo Prisma
 const prisma = new PrismaClient();
 
@@ -32,8 +34,7 @@ const store = async (req, res) => {
         });
         res.status(200).send(photo);
     } catch (err) {
-        console.error(err);
-        res.status(500).send("Server Error");
+        errorHandler(err, req, res);
     }
 }
 
@@ -97,7 +98,7 @@ const index = async (req, res) => {
             totalPages
         });
     } catch (err) {
-        console.error(err);
+        errorHandler(err, req, res);
     }
 
 }
@@ -131,7 +132,7 @@ const show = async (req, res) => {
         }
 
     } catch (err) {
-        console.error(err);
+        errorHandler(err, req, res);
     }
 }
 
@@ -175,8 +176,7 @@ const update = async (req, res) => {
         });
         res.json(photo);
     } catch (err) {
-        console.error(err);
-        res.status(500).send("Server Error");
+        errorHandler(err, req, res);
     }
 }
 
@@ -189,8 +189,7 @@ const destroy = async (req, res) => {
         });
         res.json(`Foto con slug: ${slug} eliminato con successo.`);
     } catch (err) {
-        // next(err);
-        console.error(err);
+        errorHandler(err, req, res);
     }
 }
 
