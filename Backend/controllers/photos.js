@@ -24,7 +24,7 @@ const store = async (req, res) => {
         description,
         visible: req.body.visible ? true : false,
         categories: {
-            connect: categories.map(id => ({ id: parseInt(id) }))
+            connect: categories.map(category => ({ id: category.id }))
         }
     }
 
@@ -152,7 +152,7 @@ const update = async (req, res) => {
             description,
             visible: req.body.visible ? true : false,
             categories: {
-                set: categories.map(id => ({ id: parseInt(id) }))
+                set: categories.map(category => ({ id: category.id }))
             }
         }
 
