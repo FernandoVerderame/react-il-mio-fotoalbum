@@ -2,6 +2,9 @@
 const express = require('express');
 const dotenv = require("dotenv");
 
+// Importo il ruote delle foto
+const photosRouter = require("./routers/photos.js");
+
 // Inizializzo express
 const app = express();
 
@@ -18,6 +21,9 @@ dotenv.config();
 
 // application/json
 app.use(express.json());
+
+// Router delle foto
+app.use('/photos', photosRouter);
 
 // Avvio il server
 app.listen(port, host, () => {
