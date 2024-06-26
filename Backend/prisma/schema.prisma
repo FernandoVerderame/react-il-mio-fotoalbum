@@ -42,7 +42,7 @@ model User {
   name         String?
   password     String
   photos       Photo[]
-  message      Message[]
+  messages     Message[]
   isAdmin      Boolean   @default(false)
   isSuperAdmin Boolean   @default(false)
   createdAt    DateTime  @default(now())
