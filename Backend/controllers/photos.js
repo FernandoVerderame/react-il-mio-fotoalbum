@@ -14,6 +14,13 @@ const store = async (req, res) => {
 
     const { title, image, description, categories } = req.body;
 
+    // Recupero l'ID dell'utente tramite il token
+    const token = req.headers.authorization.split(" ")[1];
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const userEmail = decoded.email;
+    const user = await prisma.user.findUnique({ where: { email: userEmail } });
+    const userId = user.id;
+
     // Genero lo slug
     const slug = createSlug(title);
 
@@ -23,6 +30,7 @@ const store = async (req, res) => {
         image: image ? image : '',
         description,
         visible: req.body.visible ? true : false,
+        userId,
         categories: {
             connect: categories.map(category => ({ id: category.id }))
         }
@@ -42,7 +50,7 @@ const store = async (req, res) => {
 const index = async (req, res) => {
     try {
         const where = {};
-        const { visible, title, page = 1, limit = 9 } = req.query;
+        const { visible, title, page = 1, limit = 9, user } = req.query;
 
         // Filtro pubblicato
         if (visible === 'true') {
@@ -64,6 +72,22 @@ const index = async (req, res) => {
 
         if (page > totalPages) {
             throw new Error(`La pagina ${page} non esiste.`);
+        }
+
+        // Filtro delle foto per lo user
+        let userId;
+
+        if (req.headers.authorization) {
+
+            const token = req.headers.authorization.split(' ')[1];
+            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            const userEmail = decoded.email;
+            const user = await prisma.user.findUnique({ where: { email: userEmail } });
+            userId = user.id;
+        }
+
+        if (user === 'true' && userId) {
+            where.userId = userId
         }
 
         const photos = await prisma.photo.findMany({
