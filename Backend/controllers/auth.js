@@ -80,7 +80,69 @@ const login = async (req, res) => {
     }
 }
 
+// Index degli users
+const index = async (req, res) => {
+
+    try {
+
+        const users = await prisma.user.findMany();
+
+        users.find(user => {
+            delete user.id;
+            delete user.password;
+        });
+
+        res.status(200).json(users);
+
+    } catch (err) {
+        errorHandler(err, req, res);
+    }
+}
+
+// Patch degli users
+const patch = async (req, res) => {
+    try {
+
+        const { email } = req.params;
+
+        const { isAdmin } = req.body;
+
+        const data = { isAdmin: isAdmin === 'true' ? true : false }
+
+        const user = await prisma.user.update({
+            where: { email },
+            data
+        });
+
+        delete user.id;
+        delete user.password;
+
+        res.status(200).send(user);
+
+    } catch (err) {
+        errorHandler(err, req, res);
+    }
+}
+
+// Destroy degli users
+const destroy = async (req, res) => {
+    try {
+
+        const { email } = req.params;
+
+        const user = await prisma.user.delete({ where: { email } });
+
+        res.status(200).send(`User ${user.name} con email: ${email} eliminato con successo!`);
+
+    } catch (err) {
+        errorHandler(err, req, res);
+    }
+}
+
 module.exports = {
     register,
-    login
+    login,
+    index,
+    patch,
+    destroy
 }
