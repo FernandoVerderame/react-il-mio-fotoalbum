@@ -14,47 +14,39 @@ const PostCard = ({ title, image, description, categories, user, isShow }) => {
                 </div>
 
                 <div className={photoCardStyle.bottom}>
-                    <div className="">
+                    <div className="photo-title">
                         <h3 className="h5">{title}</h3>
                     </div>
-
-                    <div className={photoCardStyle.dFlex}>
-
-
+                    <div className="photo-author">
+                        <p className="fst-italic">{user?.name}</p>
                     </div>
-                    <p className="mb-0 fst-italic">{user?.name}</p>
                 </div>
             </div>
 
-            <div className="photo-info">
+            {isShow &&
+                <div className="photo-info">
 
-                <div className="photo-desc">
-                    {isShow && (
+                    <div className="photo-desc">
                         <p className={photoCardStyle.paragraph}>{description}</p>
-                    )}
-                </div>
+                    </div>
 
-                <div className="photo-cat">
-                    {isShow && (
-                        <div>
-                            {categories?.length > 0 ? (
-                                <div>
-                                    <ul className={photoCardStyle.categories}>
-                                        {categories.map((category, i) => (
-                                            <li key={`category-${i}`} style={{ backgroundColor: category.color || '#ccc' }} className={photoCardStyle.photoBadge}>
-                                                {category.name}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            ) : (
-                                <p>Nessuna categoria</p>
-                            )}
-                        </div>
-                    )}
+                    <div className="photo-cat">
+                        {categories?.length > 0 ? (
+                            <div>
+                                <ul className="m-0 p-0 d-flex gap-2" style={{ listStyle: 'none' }}>
+                                    {categories.map((category, i) => (
+                                        <li key={`category-${i}`} style={{ backgroundColor: category.color }} className="badge">
+                                            {category.name}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ) : (
+                            <p>Nessuna categoria</p>
+                        )}
+                    </div>
                 </div>
-
-            </div>
+            }
 
         </section>
 
