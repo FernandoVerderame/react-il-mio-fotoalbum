@@ -179,7 +179,7 @@ const show = async (req, res) => {
 const update = async (req, res) => {
     try {
         const { slug } = req.params;
-        const { title, description, image, categories } = req.body;
+        const { title, description, categories } = req.body;
 
         // Genero lo slug
         const newSlug = createSlug(title);
@@ -187,7 +187,7 @@ const update = async (req, res) => {
         const data = {
             title,
             slug: newSlug,
-            image: image ? image : '',
+            image: req.file ? `${HOST}:${port}/photo_pics/${req.file.filename}` : '',
             description,
             visible: req.body.visible ? true : false,
             categories: {
@@ -215,6 +215,9 @@ const update = async (req, res) => {
         });
         res.json(photo);
     } catch (err) {
+        if (req.file) {
+            deletePic('photo_pics', req.file.filename);
+        }
         errorHandler(err, req, res);
     }
 }

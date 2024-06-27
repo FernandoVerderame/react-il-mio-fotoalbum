@@ -64,7 +64,10 @@ router.post('/', [
 ], store);
 
 // Rotta update
-router.put('/:slug', validator(bodyData), update);
+router.put('/:slug', [
+    upload.single("image"),
+    validator(bodyData)
+], update);
 
 //Rotta destroy
 router.delete('/:slug', destroy);
