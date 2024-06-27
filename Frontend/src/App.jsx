@@ -3,34 +3,37 @@ import DefaultLayout from "./layouts/DefaultLayout";
 import HomePage from "./pages/HomePage.jsx";
 import Photos from "./pages/Photos.jsx";
 import PhotoDetail from "./pages/PhotoDetail.jsx";
+import { GlobalProvider } from "./contexts/GlobalContext.jsx";
 
 function App() {
 
   return (
-    <Routes>
+    <GlobalProvider>
+      <Routes>
 
-      {/* Rotte pubbliche */}
+        {/* Rotte pubbliche */}
 
-      {/* Default Layout */}
-      <Route path="/" element={<DefaultLayout />}>
+        {/* Default Layout */}
+        <Route path="/" element={<DefaultLayout />}>
 
-        {/* HomePage */}
-        <Route index element={<HomePage />} />
+          {/* HomePage */}
+          <Route index element={<HomePage />} />
 
-        {/* Photos */}
-        <Route path="photos">
-          {/* Index */}
-          <Route index element={<Photos />} />
+          {/* Photos */}
+          <Route path="photos">
+            {/* Index */}
+            <Route index element={<Photos />} />
 
-          {/* Show */}
-          <Route path=":slug" >
-            <Route index element={<PhotoDetail />} />
-          </ Route>
+            {/* Show */}
+            <Route path=":slug" >
+              <Route index element={<PhotoDetail />} />
+            </ Route>
+          </Route>
+
         </Route>
 
-      </Route>
-
-    </Routes>
+      </Routes>
+    </GlobalProvider>
   );
 }
 
