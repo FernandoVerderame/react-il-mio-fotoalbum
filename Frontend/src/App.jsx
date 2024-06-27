@@ -3,36 +3,63 @@ import DefaultLayout from "./layouts/DefaultLayout";
 import HomePage from "./pages/HomePage.jsx";
 import Photos from "./pages/Photos.jsx";
 import PhotoDetail from "./pages/PhotoDetail.jsx";
+import CreatePhoto from "./pages/CreatePhoto.jsx";
+import EditPhoto from "./pages/EditPhoto.jsx";
+import Login from "./pages/Login.jsx";
 import { GlobalProvider } from "./contexts/GlobalContext.jsx";
+import { AuthProvider } from "./contexts/AuthContext.jsx";
+import PrivatePage from "./middlewares/PrivatePage.jsx";
 
 function App() {
 
   return (
     <GlobalProvider>
-      <Routes>
+      <AuthProvider>
+        <Routes>
 
-        {/* Rotte pubbliche */}
+          {/* Rotte pubbliche */}
 
-        {/* Default Layout */}
-        <Route path="/" element={<DefaultLayout />}>
+          {/* Default Layout */}
+          <Route path="/" element={<DefaultLayout />}>
+            {/* HomePage */}
+            <Route index element={<HomePage />} />
 
-          {/* HomePage */}
-          <Route index element={<HomePage />} />
+            {/* Rotta login */}
+            <Route path="login" element={<Login />} />
 
-          {/* Photos */}
-          <Route path="photos">
-            {/* Index */}
-            <Route index element={<Photos />} />
+            {/* Photos */}
+            <Route path="photos">
+              {/* Index */}
+              <Route index element={<Photos />} />
 
-            {/* Show */}
-            <Route path=":slug" >
-              <Route index element={<PhotoDetail />} />
-            </ Route>
+              {/* Show */}
+              <Route path=":slug" >
+                <Route index element={<PhotoDetail />} />
+              </ Route>
+            </Route>
           </Route>
 
-        </Route>
+          {/* Rotte private */}
+          <Route path="/" element={
+            <PrivatePage>
+              <DefaultLayout />
+            </PrivatePage>
+          }>
+            {/* Photos */}
+            <Route path="photos">
 
-      </Routes>
+              {/* Edit */}
+              <Route path=":slug">
+                <Route path="edit" element={<EditPhoto />} />
+              </Route>
+
+              {/* Create */}
+              <Route path="create" element={<CreatePhoto />} />
+            </Route>
+          </Route>
+
+        </Routes>
+      </AuthProvider>
     </GlobalProvider>
   );
 }
