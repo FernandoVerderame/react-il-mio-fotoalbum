@@ -7,8 +7,14 @@ const router = express.Router();
 // Importo il validatore
 const validator = require('../middlewares/validator.js');
 
-// Importo il bodyData
+// Importo validazioni
 const bodyData = require("../validations/messages.js");
+
+// Validazione dell'ID
+const paramID = require('../validations/generic.js');
+
+// Autenticazione Token
+const authenticateToken = require('../middlewares/authToken.js');
 
 // Importo le funzioni dei messaggi
 const {
@@ -21,8 +27,14 @@ const {
 // Rotta store
 router.post('/', validator(bodyData), store);
 
+// ? Rotte Protette
+router.use(authenticateToken);
+
 // Rotta index
 router.get('/', index);
+
+// ? Validatore dell'ID
+router.use('/:id', validator(paramID));
 
 // Rotta show
 router.get('/:id', show);

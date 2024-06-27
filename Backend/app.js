@@ -2,7 +2,7 @@
 const express = require('express');
 const dotenv = require("dotenv");
 
-// Importo i ruoter
+// Importo i ruoters
 const photosRouter = require("./routers/photos.js");
 
 const categoriesRouter = require("./routers/categories.js");

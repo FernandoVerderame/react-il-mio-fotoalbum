@@ -6,8 +6,15 @@ const router = express.Router();
 
 // Importo il validatore
 const validator = require('../middlewares/validator.js');
-const paramID = require('../validations/generic.js');
+
+// Validazioni
 const bodyData = require('../validations/categories.js');
+
+// Validazione dell'ID
+const paramID = require('../validations/generic.js');
+
+// Autenticazione Token
+const authenticateToken = require('../middlewares/authToken.js');
 
 // Importo le funzioni delle categorie
 const {
@@ -18,13 +25,16 @@ const {
     destroy
 } = require("../controllers/categories.js");
 
+// ? Rotte Protette
+router.use(authenticateToken);
+
 // Rotta store
 router.post('/', validator(bodyData), store);
 
 // Rotta index
 router.get('/', index);
 
-// Validatore dell'ID
+// ? Validatore dell'ID
 router.use('/:id', validator(paramID));
 
 // Rotta show

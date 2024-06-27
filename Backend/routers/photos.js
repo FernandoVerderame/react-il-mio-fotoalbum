@@ -13,6 +13,12 @@ const validationSlug = require("../validations/validationSlug.js");
 // Importo il bodyData
 const bodyData = require("../validations/photos.js");
 
+// Autenticazione Token
+const authenticateToken = require('../middlewares/authToken.js');
+
+// Autenticazione Admin
+const adminPermission = require("../middlewares/authAdmin.js");
+
 // Importo il controller delle foto
 const {
     store,
@@ -22,17 +28,24 @@ const {
     destroy
 } = require("../controllers/photos.js");
 
+// ? Rotte pubbliche
 // Rotta index
 router.get('/', index);
 
-// Rotta store
-router.post('/', validator(bodyData), store);
-
-// Validatore dello slug
+// ? Validatore dello slug
 router.use('/:slug', validator(validationSlug));
 
 // Rotta show
 router.get('/:slug', show);
+
+// ? Rotte Protette
+router.use(authenticateToken);
+
+// ! Rotte Admin
+router.use(adminPermission);
+
+// Rotta store
+router.post('/', validator(bodyData), store);
 
 // Rotta update
 router.put('/:slug', validator(bodyData), update);
