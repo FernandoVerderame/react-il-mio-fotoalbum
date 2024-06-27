@@ -7,7 +7,7 @@ const PostCard = ({ title, image, description, categories, user, isShow }) => {
 
             <div className={photoCardStyle.photoCard}>
 
-                <div className="thumb d-flex justify-content-center pt-5">
+                <div className={photoCardStyle.thumb}>
                     <div className={photoCardStyle.image}>
                         <img src={image ? image : "https://placehold.co/600x400"} alt={title} className={photoCardStyle.img} />
                     </div>
