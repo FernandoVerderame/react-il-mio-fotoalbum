@@ -29,6 +29,9 @@ const host = process.env.HOST || "localhost";
 
 dotenv.config();
 
+// Cartella public per l'upload
+app.use(express.static("public"));
+
 // application/json
 app.use(express.json());
 
