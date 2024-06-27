@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import PhotoCard from "../components/PhotoCard/PhotoCard.jsx";
 
-const PhotoDeatil = () => {
+const PhotoDetail = () => {
 
     const navigate = useNavigate();
 
@@ -27,6 +27,11 @@ const PhotoDeatil = () => {
         };
     }, [slug]);
 
+    const deletePhoto = async slug => {
+        await axios.delete(`/photos/${slug}`);
+        navigate('/photos');
+    }
+
     return (
         <section className="container my-4">
             <PhotoCard
@@ -37,6 +42,7 @@ const PhotoDeatil = () => {
                 categories={photo?.categories}
                 user={photo?.user}
                 isShow={true}
+                onDelete={deletePhoto}
             />
             <button
                 onClick={() => { navigate('/photos') }}
@@ -48,4 +54,4 @@ const PhotoDeatil = () => {
     );
 }
 
-export default PhotoDeatil;
+export default PhotoDetail;
