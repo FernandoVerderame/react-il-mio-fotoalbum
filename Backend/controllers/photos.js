@@ -151,7 +151,8 @@ const show = async (req, res) => {
                 categories: {
                     select: {
                         id: true,
-                        name: true
+                        name: true,
+                        color: true
                     }
                 },
                 user: {
