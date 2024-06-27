@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import DefaultLayout from "./layouts/DefaultLayout";
 import HomePage from "./pages/HomePage.jsx";
 import Photos from "./pages/Photos.jsx";
+import PhotoDetail from "./pages/PhotoDetail.jsx";
 
 function App() {
 
@@ -20,6 +21,11 @@ function App() {
         <Route path="photos">
           {/* Index */}
           <Route index element={<Photos />} />
+
+          {/* Show */}
+          <Route path=":slug" >
+            <Route index element={<PhotoDetail />} />
+          </ Route>
         </Route>
 
       </Route>
