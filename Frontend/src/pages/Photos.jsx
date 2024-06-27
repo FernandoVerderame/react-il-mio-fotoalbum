@@ -1,5 +1,6 @@
 import axios from "../utils/axiosClient.js";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import PhotoCard from "../components/PhotoCard/PhotoCard.jsx";
 
 const Photos = () => {
@@ -22,16 +23,18 @@ const Photos = () => {
                 <h1 className="m-0">Album</h1>
             </div>
             <div className="row g-5">
-                {photos?.map(({ id, title, image, description, categories, visible, user }) => (
+                {photos?.map(({ id, title, slug, image, description, categories, visible, user }) => (
                     visible === true &&
                     <div key={id} className="col-4">
-                        <PhotoCard
-                            title={title}
-                            image={image}
-                            description={description}
-                            categories={categories}
-                            user={user}
-                        />
+                        <Link to={`/photos/${slug}`} style={{ textDecoration: 'none', color: 'black' }}>
+                            <PhotoCard
+                                title={title}
+                                image={image}
+                                description={description}
+                                categories={categories}
+                                user={user}
+                            />
+                        </Link>
                     </div>
                 ))}
             </div>
