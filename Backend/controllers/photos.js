@@ -9,10 +9,21 @@ const prisma = new PrismaClient();
 // Importo la funzione per generare lo slug
 const createSlug = require("../utils/slug.js");
 
+// Importo la delete pic
+const deletePic = require("../utils/deletePic.js");
+
+// Importo jwt
+const jwt = require("jsonwebtoken");
+
+// Importo host e port
+require("dotenv").config();
+const { PORT, HOST } = process.env;
+const port = PORT || 3000;
+
 // Store
 const store = async (req, res) => {
 
-    const { title, image, description, categories } = req.body;
+    const { title, description, categories } = req.body;
 
     // Recupero l'ID dell'utente tramite il token
     const token = req.headers.authorization.split(" ")[1];
@@ -27,7 +38,7 @@ const store = async (req, res) => {
     const data = {
         title,
         slug: slug,
-        image: image ? image : '',
+        image: req.file ? `${HOST}:${port}/photo_pics/${req.file.filename}` : '',
         description,
         visible: req.body.visible ? true : false,
         userId,
@@ -42,6 +53,9 @@ const store = async (req, res) => {
         });
         res.status(200).send(photo);
     } catch (err) {
+        if (req.file) {
+            deletePic('photo_pics', req.file.filename);
+        }
         errorHandler(err, req, res);
     }
 }
@@ -208,10 +222,15 @@ const update = async (req, res) => {
 const destroy = async (req, res) => {
     try {
         const { slug } = req.params;
-        await prisma.photo.delete({
+        const photo = await prisma.photo.delete({
             where: { slug }
         });
-        res.json(`Foto con slug: ${slug} eliminato con successo.`);
+
+        const imageName = photo.image.replace(`${HOST}:${PORT}/photo_pics/`, '');
+
+        if (photo.image) deletePic('photo_pics', imageName);
+
+        res.status(200).json(`Foto con slug: ${slug} eliminato con successo.`);
     } catch (err) {
         errorHandler(err, req, res);
     }

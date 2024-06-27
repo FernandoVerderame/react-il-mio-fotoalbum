@@ -19,6 +19,19 @@ const authenticateToken = require('../middlewares/authToken.js');
 // Autenticazione Admin
 const adminPermission = require("../middlewares/authAdmin.js");
 
+// Importo multer ed il path
+const multer = require("multer");
+const path = require("path");
+
+const storage = multer.diskStorage({
+    destination: "public/photo_pics",
+    filename: (req, file, cf) => {
+        const fileType = path.extname(file.originalname);
+        cf(null, String(Date.now()) + fileType)
+    }
+});
+const upload = multer({ storage });
+
 // Importo il controller delle foto
 const {
     store,
@@ -45,7 +58,10 @@ router.use(authenticateToken);
 router.use(adminPermission);
 
 // Rotta store
-router.post('/', validator(bodyData), store);
+router.post('/', [
+    upload.single("image"),
+    validator(bodyData)
+], store);
 
 // Rotta update
 router.put('/:slug', validator(bodyData), update);
