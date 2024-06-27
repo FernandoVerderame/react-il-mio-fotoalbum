@@ -1,0 +1,70 @@
+.cardForm {
+    border-radius: 8px;
+    width: 1000px;
+    box-shadow: 3px 20px 62px -25px #000;
+    background-color: white;
+    margin-bottom: 25px;
+
+    .cardTitle {
+        font-size: 20px;
+        padding: 20px;
+        border-bottom: 1px solid black;
+        text-align: center;
+    }
+
+    .cardBody {
+        padding: 20px;
+
+        .cardInput {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+
+            input {
+                border-radius: 5px;
+                font-size: 18px;
+                padding: 4px;
+            }
+
+            textarea {
+                border-radius: 5px;
+                font-size: 18px;
+                padding: 4px;
+            }
+        }
+    }
+
+    .cardBtn {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    button {
+        font-size: 18px;
+        padding: 5px 10px;
+        border-radius: 8px;
+        margin: 15px 0;
+        cursor: pointer;
+    }
+
+
+    ul {
+        margin-top: 5px;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        padding-left: 0;
+    }
+
+    li {
+        display: flex;
+        gap: 5px;
+    }
+
+    .published {
+        display: flex;
+        gap: 10px;
+    }
+}
