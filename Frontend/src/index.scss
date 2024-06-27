@@ -1,1 +1,18 @@
 @import "bootstrap/scss/bootstrap";
+
+body {
+    background-color: gray;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #E6B582;
+}
+
+::-webkit-scrollbar-thumb {
+    background: black;
+}
