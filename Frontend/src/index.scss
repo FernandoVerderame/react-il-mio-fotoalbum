@@ -16,3 +16,19 @@ body {
 ::-webkit-scrollbar-thumb {
     background: black;
 }
+
+#login {
+    height: calc(100vh - 60px);
+
+    .card {
+        box-shadow: 3px 20px 62px -25px #000;
+    }
+}
+
+#register {
+    height: calc(100vh - 60px);
+
+    .card {
+        box-shadow: 3px 20px 62px -25px #000;
+    }
+}
