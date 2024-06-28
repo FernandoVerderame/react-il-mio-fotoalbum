@@ -1,5 +1,5 @@
 import axios from "../utils/axiosClient.js";
-import PostForm from "../components/Form/Form.jsx";
+import PhotoForm from "../components/Form/Form.jsx";
 import { Link, useNavigate } from "react-router-dom";
 
 const CreatePhoto = () => {
@@ -20,7 +20,7 @@ const CreatePhoto = () => {
 
     return (
         <section id="form" className="d-flex align-items-center flex-column mt-5">
-            <PostForm
+            <PhotoForm
                 onSubmit={createPhoto}
             />
             <Link to="../" relative="path" className="btn btn-secondary">Torna indietro</Link>
