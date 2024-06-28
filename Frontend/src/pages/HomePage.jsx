@@ -14,17 +14,15 @@ const Home = () => {
 
 
     return (
-        <>
-            <div>
-                <section id="jumbotron">
-                    <h1 className="text-white mb-0">"Capture the moment!"</h1>
-                </section>
-            </div>
+        <div>
+            <section id="jumbotron">
+                <h1 className="text-white mb-0">"Capture the moment!"</h1>
+            </section>
 
             <FormContact
                 onSubmit={createMessage}
             />
-        </>
+        </div>
     );
 }
 
