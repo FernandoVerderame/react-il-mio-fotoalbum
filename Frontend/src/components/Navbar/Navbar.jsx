@@ -23,6 +23,9 @@ const Navbar = () => {
                         <li className="nav-item">
                             <NavLink className="nav-link text-white" to={'/photos'}>Album</NavLink>
                         </li>
+                        <li className="nav-item">
+                            <NavLink className="nav-link text-white" to={'/categories'}>Categorie</NavLink>
+                        </li>
                     </ul>
                 </div>
                 <div className="right-nav">
