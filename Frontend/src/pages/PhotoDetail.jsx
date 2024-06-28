@@ -32,7 +32,7 @@ const PhotoDetail = () => {
         };
     }, [slug]);
 
-    const deletePhoto = async slug => {
+    const deletePhoto = async () => {
         await axios.delete(`/photos/${slug}`);
         navigate('/photos');
     }
