@@ -25,14 +25,14 @@ const {
     destroy
 } = require("../controllers/categories.js");
 
+// Rotta index
+router.get('/', index);
+
 // ? Rotte Protette
 router.use(authenticateToken);
 
 // Rotta store
 router.post('/', validator(bodyData), store);
-
-// Rotta index
-router.get('/', index);
 
 // ? Validatore dell'ID
 router.use('/:id', validator(paramID));
