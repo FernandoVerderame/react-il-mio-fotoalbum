@@ -14,7 +14,7 @@ const store = async (req, res, next) => {
     const data = {
         email,
         content,
-        userId: 1
+        userId: 4
     }
 
     try {
