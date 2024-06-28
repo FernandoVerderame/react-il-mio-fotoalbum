@@ -18,7 +18,10 @@ const Navbar = () => {
                     </li>
                 </ul>
                 {!isLoggedIn &&
-                    <NavLink to={`/login`} className="btn btn-primary">Login</NavLink>
+                    <div className="d-flex gap-2">
+                        <NavLink to={'/login'} className="btn btn-primary">Login</NavLink>
+                        <NavLink to={'/register'} className="btn btn-secondary">Register</NavLink>
+                    </div>
                 }
                 {isLoggedIn &&
                     <div className="d-flex align-items-center gap-2">
