@@ -6,6 +6,7 @@ import PhotoDetail from "./pages/PhotoDetail.jsx";
 import CreatePhoto from "./pages/CreatePhoto.jsx";
 import EditPhoto from "./pages/EditPhoto.jsx";
 import Login from "./pages/Login.jsx";
+import Register from "./pages/Register.jsx";
 import { GlobalProvider } from "./contexts/GlobalContext.jsx";
 import { AuthProvider } from "./contexts/AuthContext.jsx";
 import PrivatePage from "./middlewares/PrivatePage.jsx";
@@ -26,6 +27,9 @@ function App() {
 
             {/* Rotta login */}
             <Route path="login" element={<Login />} />
+
+            {/* Rotta register */}
+            <Route path="register" element={<Register />} />
 
             {/* Photos */}
             <Route path="photos">
