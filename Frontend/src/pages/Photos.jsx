@@ -29,7 +29,7 @@ const Photos = () => {
     return (
         <section className="container my-5">
             <div className="d-flex justify-content-between align-items-center mb-5">
-                <h1 className="m-0">Album</h1>
+                <h1 className="m-0 text-white">Album</h1>
                 <div className="input-group search-bar">
                     <span className="input-group-text">
                         <SearchIcon />
@@ -47,7 +47,7 @@ const Photos = () => {
             <div className="row g-5">
                 {photos.length === 0 ? (
                     <div className="col-12">
-                        <p className="text-center h3">Nessuna foto trovata!</p>
+                        <p className="text-center text-white h3">Nessuna foto trovata!</p>
                     </div>
                 ) : (
                     photos.map(({ id, title, slug, image, description, categories, visible, user }) => (
