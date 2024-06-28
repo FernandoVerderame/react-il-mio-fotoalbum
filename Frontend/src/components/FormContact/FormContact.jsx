@@ -35,7 +35,7 @@ const FormContact = ({ initialData, onSubmit }) => {
 
     return (
         <>
-            <section id="form-contact" className="d-flex justify-content-center align-items-center">
+            <section id="form-contact" className="d-flex justify-content-center align-items-center py-5">
                 <div className="card w-25">
                     <div className="card-header">
                         <div className="card-title text-center">
@@ -74,19 +74,6 @@ const FormContact = ({ initialData, onSubmit }) => {
                             {messageError?.errors && messageError.errors.map((err, index) => (
                                 <div key={`err${index}`}>{err.msg}</div>
                             ))}
-
-                            {/* {messageError && (
-                                <div className="">
-                                    <p>{messageError.message}</p>
-                                    {messageError.errors && (
-                                        <ul>
-                                            {messageError.errors.map((err, index) => (
-                                                <li key={`err-${index}`}>{err.msg}</li>
-                                            ))}
-                                        </ul>
-                                    )}
-                                </div>
-                            )} */}
 
                             <div className="d-flex align-items-center flex-column gap-2">
                                 <button className="btn btn-primary">Invia</button>
