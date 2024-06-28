@@ -26,6 +26,21 @@ const AuthProvider = ({ children }) => {
         }
     }
 
+    const register = async (payload) => {
+        try {
+            if (!payload.name) delete payload.name;
+            const { data: response } = await axios.post('/auth/register', payload);
+            setUser(response.data);
+            localStorage.setItem('accessToken', response.token);
+            navigate('/');
+        } catch (err) {
+            const { errors } = err.response.data;
+            const error = new Error(errors ? 'Errore di Signup' : err.response.data);
+            error.errors = errors;
+            throw error;
+        }
+    }
+
     const logout = () => {
         setUser(null);
         localStorage.removeItem('accessToken');
@@ -37,6 +52,7 @@ const AuthProvider = ({ children }) => {
         isLoggedIn,
         login,
         logout,
+        register
     };
 
     return (
