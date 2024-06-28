@@ -1,7 +1,7 @@
 @import "bootstrap/scss/bootstrap";
 
 body {
-    background-color: gray;
+    background-color: #333333;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
@@ -35,4 +35,22 @@ body {
 
 .search-bar {
     width: 400px;
+}
+
+#jumbotron {
+    height: 700px;
+    background-image: url('./assets//images/photo-17127.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    filter: saturate(0.5) brightness(0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+        font-style: italic;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 60px;
+    }
 }
