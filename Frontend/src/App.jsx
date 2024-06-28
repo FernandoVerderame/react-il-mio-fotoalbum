@@ -10,6 +10,7 @@ import Register from "./pages/Register.jsx";
 import { GlobalProvider } from "./contexts/GlobalContext.jsx";
 import { AuthProvider } from "./contexts/AuthContext.jsx";
 import PrivatePage from "./middlewares/PrivatePage.jsx";
+import Categories from "./pages/Categories.jsx";
 
 function App() {
 
@@ -40,6 +41,12 @@ function App() {
               <Route path=":slug" >
                 <Route index element={<PhotoDetail />} />
               </ Route>
+            </Route>
+
+            {/* Categories */}
+            <Route path="categories">
+              {/* Index */}
+              <Route index element={<Categories />} />
             </Route>
           </Route>
 
