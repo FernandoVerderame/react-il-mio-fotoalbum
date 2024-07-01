@@ -98,7 +98,7 @@ const FormPhoto = ({ initialData, onSubmit }) => {
                                 </div>
                             </div>
 
-                            <div className="col-6">
+                            <div className="col-6 d-flex flex-column justify-content-between">
 
                                 {/* Input Categories */}
                                 <div className="mb-5">
