@@ -28,9 +28,9 @@ const Categories = () => {
                 <table className="table table-hover table-dark w-75">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Colore</th>
+                            <th scope="col" className="bg-secondary">#</th>
+                            <th scope="col" className="bg-secondary">Nome</th>
+                            <th scope="col" className="bg-secondary">Colore</th>
                         </tr>
                     </thead>
                     <tbody>
