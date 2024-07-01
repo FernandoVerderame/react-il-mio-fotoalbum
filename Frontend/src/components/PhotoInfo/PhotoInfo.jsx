@@ -7,7 +7,10 @@ const PhotoInfo = ({ title, slug, description, categories, isLoggedIn, navigate,
         <div className="photo-info card">
             <div className="card-header">
                 <div className="card-title text-center m-0">
+
+                    {/* Titolo*/}
                     <h1 className="h3 m-0">{title}</h1>
+
                 </div>
             </div>
             <div className="card-body">
@@ -15,12 +18,17 @@ const PhotoInfo = ({ title, slug, description, categories, isLoggedIn, navigate,
                 <div className="row">
                     <div className="col-8">
                         <div className="photo-desc">
+
+                            {/* Descrizione */}
                             <h5>Descrizione</h5>
                             <p>{description}</p>
+
                         </div>
                     </div>
                     <div className="col-4">
                         <div className="photo-cat">
+
+                            {/* Categorie */}
                             {categories?.length > 0 ? (
                                 <div>
                                     <h5>Categorie</h5>
@@ -33,6 +41,7 @@ const PhotoInfo = ({ title, slug, description, categories, isLoggedIn, navigate,
                                     </ul>
                                 </div>
                             ) : (
+                                // Nel caso in cui non ci fossero categorie
                                 <p>Nessuna categoria</p>
                             )}
                         </div>
@@ -43,6 +52,8 @@ const PhotoInfo = ({ title, slug, description, categories, isLoggedIn, navigate,
             <div className="card-footer">
                 <div className="buttons d-flex justify-content-between">
                     <div className="left-btn">
+
+                        {/* Bottone per tornare indietro */}
                         <button
                             onClick={() => { navigate('/photos') }}
                             className="btn btn-secondary btn-sm d-flex align-items-center gap-1">
@@ -51,15 +62,21 @@ const PhotoInfo = ({ title, slug, description, categories, isLoggedIn, navigate,
                             />
                             <span>Indietro</span>
                         </button>
+
                     </div>
+
                     {isLoggedIn &&
                         <div className="right-btns d-flex gap-2">
+
+                            {/* Bottone modifica */}
                             <button
                                 onClick={() => { navigate(`/photos/${slug}/edit`) }}
                                 className="btn btn-warning btn-sm d-flex align-items-center gap-1">
                                 <EditIcon />
                                 <span>Modifica</span>
                             </button>
+
+                            {/* Bottone eliminazione */}
                             <button
                                 onClick={() => setDeleteMode(true)}
                                 className="btn btn-danger btn-sm d-flex align-items-center gap-1">
@@ -68,6 +85,7 @@ const PhotoInfo = ({ title, slug, description, categories, isLoggedIn, navigate,
                                 />
                                 <span>Elimina</span>
                             </button>
+
                         </div>
                     }
                 </div>

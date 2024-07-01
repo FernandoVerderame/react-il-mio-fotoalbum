@@ -8,11 +8,16 @@ import PhotoInfo from "../components/PhotoInfo/PhotoInfo.jsx";
 
 const PhotoDetail = () => {
 
+    // Recupero useNavigate da react router dom
     const navigate = useNavigate();
 
+    // Recupero lo slug dai parametri
     const { slug } = useParams();
+
+    // useState della singola foto
     const [photo, setPhoto] = useState(null);
 
+    // Fecth della singola foto
     const fetchPhoto = async () => {
         try {
             const res = await axios.get(`/photos/${slug}`);
@@ -30,11 +35,13 @@ const PhotoDetail = () => {
         };
     }, [slug]);
 
+    // Funzione per la cancellazione
     const deletePhoto = async () => {
         await axios.delete(`/photos/${slug}`);
         navigate('/photos');
     }
 
+    // Modale
     const [deleteMode, setDeleteMode] = useState(false);
 
     const dialogRef = useRef();
@@ -47,6 +54,7 @@ const PhotoDetail = () => {
         }
     }, [deleteMode]);
 
+    // Autenticazione
     const { isLoggedIn } = useAuth();
 
     return (
