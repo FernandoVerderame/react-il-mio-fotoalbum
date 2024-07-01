@@ -5,6 +5,21 @@ body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+    overflow-y: auto;
+}
+
+footer {
+    margin-top: auto;
+}
+
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -18,7 +33,7 @@ body {
 }
 
 #login {
-    height: calc(100vh - 60px);
+    height: calc(100vh - 110px);
 
     .card {
         box-shadow: 3px 20px 62px -25px #000;
@@ -26,7 +41,7 @@ body {
 }
 
 #register {
-    height: calc(100vh - 60px);
+    height: calc(100vh - 110px);
 
     .card {
         box-shadow: 3px 20px 62px -25px #000;
@@ -35,6 +50,11 @@ body {
 
 .search-bar {
     width: 400px;
+}
+
+#create-photo-form,
+#edit-photo-form {
+    margin-top: 130px;
 }
 
 #jumbotron {
@@ -69,36 +89,40 @@ table {
     border-radius: 50%;
 }
 
-.accordion-item {
+.accordion {
+    box-shadow: 3px 20px 62px -25px #000;
 
-    .accordion-button {
-        &:focus {
-            box-shadow: none;
+    .accordion-item {
+
+        .accordion-button {
+            &:focus {
+                box-shadow: none;
+            }
+
+            &:not(.collapsed) {
+                background-color: whitesmoke;
+            }
+
+            &:after {
+                font-weight: 900;
+                transform: rotate(180deg);
+                transition: transform 0.3s;
+            }
+
+            &.collapsed:after {
+                transform: rotate(0deg);
+            }
         }
 
-        &:not(.collapsed) {
+        .accordion-collapse {
+            overflow: hidden;
+            transition: height 0.3s ease;
+        }
+
+        .accordion-body {
             background-color: whitesmoke;
+            color: black;
+            padding: 1rem;
         }
-
-        &:after {
-            font-weight: 900;
-            transform: rotate(180deg);
-            transition: transform 0.3s;
-        }
-
-        &.collapsed:after {
-            transform: rotate(0deg);
-        }
-    }
-
-    .accordion-collapse {
-        overflow: hidden;
-        transition: height 0.3s ease;
-    }
-
-    .accordion-body {
-        background-color: whitesmoke;
-        color: black;
-        padding: 1rem;
     }
 }
