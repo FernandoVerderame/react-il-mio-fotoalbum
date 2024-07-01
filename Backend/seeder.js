@@ -128,9 +128,9 @@ const categories = [
 const users = [
     {
         "id": 1,
-        "email": "johndoe@example.com",
-        "name": "John Doe",
-        "password": "securepassword123",
+        "email": "fernando@gmail.com",
+        "name": "Fernando Verderame",
+        "password": "12345678",
         "isAdmin": true,
         "isSuperAdmin": true,
     },
@@ -147,8 +147,8 @@ const users = [
         "email": "alicejones@example.com",
         "name": "Alice Jones",
         "password": "yetanotherpassword789",
-        "isAdmin": false,
-        "isSuperAdmin": true,
+        "isAdmin": true,
+        "isSuperAdmin": false,
     }
 ]
 
@@ -185,37 +185,37 @@ const messages = [
     }
 ]
 
-// Categorie
-prisma.category.createMany({
-    data: categories
-})
-    .then()
-    .catch(err => console.error(err));
+// // Categorie
+// prisma.category.createMany({
+//     data: categories
+// })
+//     .then()
+//     .catch(err => console.error(err));
 
-// Utenti
-users.forEach(async (user) => {
-    const { id, email, name, password, isAdmin, isSuperAdmin } = user;
+// // Utenti
+// users.forEach(async (user) => {
+//     const { id, email, name, password, isAdmin, isSuperAdmin } = user;
 
-    const passwordDb = await hashPassword(password);
+//     const passwordDb = await hashPassword(password);
 
-    const data = {
-        id,
-        email,
-        name,
-        password: passwordDb,
-        isAdmin,
-        isSuperAdmin
-    };
+//     const data = {
+//         id,
+//         email,
+//         name,
+//         password: passwordDb,
+//         isAdmin,
+//         isSuperAdmin
+//     };
 
-    prisma.user.create({ data }).then().catch(err => console.error(err));
-})
+//     prisma.user.create({ data }).then().catch(err => console.error(err));
+// })
 
-// Messages
-prisma.message.createMany({
-    data: messages
-})
-    .then()
-    .catch(err => console.error(err));
+// // Messages
+// prisma.message.createMany({
+//     data: messages
+// })
+//     .then()
+//     .catch(err => console.error(err));
 
 
 
