@@ -1,5 +1,5 @@
 import axios from "../utils/axiosClient.js";
-import PhotoForm from "../components/Form/Form.jsx";
+import PhotoForm from "../components/FormPhoto/FormPhoto.jsx";
 import { Link, useNavigate } from "react-router-dom";
 
 const CreatePhoto = () => {

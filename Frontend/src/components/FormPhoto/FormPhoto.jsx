@@ -1,10 +1,10 @@
 // Importo lo style del Form, l'icona, la PostCard e lo useState
 import { useState } from 'react';
 import { useGlobal } from '../../contexts/GlobalContext';
-import formStyle from './Form.module.scss';
+import formStyle from './FormPhoto.module.scss';
 import { FaRegSave as Save } from "react-icons/fa";
 
-const Form = ({ initialData, onSubmit }) => {
+const FormPhoto = ({ initialData, onSubmit }) => {
 
     const { categories } = useGlobal();
 
@@ -150,4 +150,4 @@ const Form = ({ initialData, onSubmit }) => {
     );
 }
 
-export default Form;
+export default FormPhoto;

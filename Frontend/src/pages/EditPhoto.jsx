@@ -1,7 +1,7 @@
 import axios from "../utils/axiosClient.js";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import PhotoForm from "../components/Form/Form.jsx";
+import PhotoForm from "../components/FormPhoto/FormPhoto.jsx";
 
 const EditPhoto = () => {
 
