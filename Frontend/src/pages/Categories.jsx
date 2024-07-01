@@ -53,7 +53,7 @@ const Categories = () => {
                     <h3>Sei sicuro?</h3>
                     <CloseIcon onClick={() => setDeleteMode(false)} role='button' />
                 </div>
-                <p>Se procedi, eliminerai definitivamente il messaggio ricevuto.</p>
+                <p>Se procedi, eliminerai definitivamente la categoria.</p>
                 <button
                     onClick={deleteCategory}
                     className="btn btn-danger btn-sm"
