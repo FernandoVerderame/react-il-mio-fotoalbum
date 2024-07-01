@@ -18,7 +18,7 @@ model Photo {
   title       String
   slug        String     @unique
   image       String?
-  description String
+  description String     @db.VarChar(1000)
   visible     Boolean
   categories  Category[]
   createdAt   DateTime   @default(now())
@@ -52,7 +52,7 @@ model User {
 model Message {
   id        Int      @id @default(autoincrement())
   email     String
-  content   String
+  content   String   @db.VarChar(1000)
   user      User?    @relation(fields: [userId], references: [id])
   userId    Int?
   createdAt DateTime @default(now())
