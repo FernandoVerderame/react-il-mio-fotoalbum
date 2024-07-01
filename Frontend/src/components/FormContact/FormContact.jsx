@@ -6,7 +6,7 @@ const FormContact = ({ initialData, onSubmit }) => {
     const defaultMessageData = initialData || {
         email: '',
         content: '',
-        userId: 4
+        userId: 1
     };
 
     const [messageData, setMessageData] = useState(defaultMessageData);
