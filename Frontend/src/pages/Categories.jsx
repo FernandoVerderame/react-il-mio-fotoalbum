@@ -39,9 +39,9 @@ const Categories = () => {
                                 <td colSpan="3" className="text-center text-white h3">Nessuna categoria trovata!</td>
                             </tr>
                         ) : (
-                            categories.map(({ id, name, color }) => (
+                            categories.map(({ id, name, color }, i) => (
                                 <tr key={id}>
-                                    <th scope="row">{id}</th>
+                                    <th scope="row">{i + 1}</th>
                                     <td>{name}</td>
                                     <td><div className="badge-cat" style={{ backgroundColor: color }}></div></td>
                                 </tr>
