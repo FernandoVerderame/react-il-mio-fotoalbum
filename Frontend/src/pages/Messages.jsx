@@ -2,6 +2,7 @@ import axios from "../utils/axiosClient.js";
 import { useEffect, useRef, useState } from "react";
 import { AiOutlineClose as CloseIcon } from "react-icons/ai";
 import AccordionMessages from "../components/AccordionMessages/AccordionMessages.jsx";
+import DeleteModal from "../components/Modal/Modal.jsx";
 
 const Messages = () => {
 
@@ -65,19 +66,12 @@ const Messages = () => {
         <section id="messages" className="container my-5">
 
             {/* Modale eliminazione */}
-            <dialog ref={dialogRef}>
-                <div className="d-flex justify-content-between align-items-center">
-                    <h3>Sei sicuro?</h3>
-                    <CloseIcon onClick={() => setDeleteMode(false)} role='button' />
-                </div>
-                <p>Se procedi, eliminerai definitivamente il messaggio ricevuto.</p>
-                <button
-                    onClick={deleteMessage}
-                    className="btn btn-danger btn-sm"
-                >
-                    Elimina
-                </button>
-            </dialog>
+            <DeleteModal
+                dialogRef={dialogRef}
+                title={messageToDelete}
+                setDeleteMode={setDeleteMode}
+                deleteBtn={deleteMessage}
+            />
 
             <div className="mb-5">
                 <h1 className="m-0 text-white">Dashboard Messaggi</h1>

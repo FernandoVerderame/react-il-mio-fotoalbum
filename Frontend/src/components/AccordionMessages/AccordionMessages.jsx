@@ -9,7 +9,7 @@ const AccordionMessages = ({ messages, expandedMessages, toggleAccordion, handle
                 <div className="text-center text-white h3">Nessun messaggio ricevuto!</div>
 
             ) : (
-                messages.map(({ id, email, content, user }, i) => (
+                messages.map(({ id, email, content, user }) => (
 
                     // Record del messaggio
                     <div className="accordion-item" key={id}>
@@ -26,7 +26,7 @@ const AccordionMessages = ({ messages, expandedMessages, toggleAccordion, handle
                                 <div className="d-flex w-100 justify-content-between">
 
                                     {/* Indice */}
-                                    <span><strong>#{i + 1}</strong></span>
+                                    <span><strong>#{id}</strong></span>
 
                                     {/* Email del mittente */}
                                     <span>Email: <strong>{email}</strong></span>
