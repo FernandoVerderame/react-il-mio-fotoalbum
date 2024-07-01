@@ -19,7 +19,7 @@ const Messages = () => {
         fetchMessages();
     }, []);
 
-    // Cancellazione dei messaggi
+    // Eliminazione dei messaggi
     const [messageToDelete, setMessageToDelete] = useState(null);
 
     const deleteMessage = async () => {
@@ -30,7 +30,7 @@ const Messages = () => {
         }
     }
 
-    // Modale cancellazione
+    // Modale eliminazione
     const [deleteMode, setDeleteMode] = useState(false);
 
     const dialogRef = useRef();
@@ -57,26 +57,27 @@ const Messages = () => {
 
     return (
         <section id="messages" className="container my-5">
+
+            {/* DeleteBtn */}
+            <dialog ref={dialogRef}>
+                <div className="d-flex justify-content-between align-items-center">
+                    <h3>Sei sicuro?</h3>
+                    <CloseIcon onClick={() => setDeleteMode(false)} role='button' />
+                </div>
+                <p>Se procedi, eliminerai definitivamente il messaggio ricevuto.</p>
+                <button
+                    onClick={deleteMessage}
+                    className="btn btn-danger btn-sm"
+                >
+                    Elimina
+                </button>
+            </dialog>
+
             <div className="mb-5">
                 <h1 className="m-0 text-white">Dashboard Messaggi</h1>
             </div>
 
             <div className="d-flex justify-content-center">
-
-                {/* DeleteBtn */}
-                <dialog ref={dialogRef}>
-                    <div className="d-flex justify-content-between align-items-center">
-                        <h3>Sei sicuro?</h3>
-                        <CloseIcon onClick={() => setDeleteMode(false)} role='button' />
-                    </div>
-                    <p>Se procedi, eliminerai definitivamente il messaggio ricevuto.</p>
-                    <button
-                        onClick={deleteMessage}
-                        className="btn btn-danger btn-sm"
-                    >
-                        Elimina
-                    </button>
-                </dialog>
 
                 <div className="accordion w-100" id="accordionMessages">
                     {messages.length === 0 ? (
