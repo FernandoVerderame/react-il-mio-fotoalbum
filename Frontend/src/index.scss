@@ -57,6 +57,10 @@ body {
 
 table {
     box-shadow: 3px 20px 62px -25px #000;
+
+    tr {
+        vertical-align: middle;
+    }
 }
 
 .badge-cat {

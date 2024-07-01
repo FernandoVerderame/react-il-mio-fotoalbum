@@ -28,7 +28,7 @@ const Messages = () => {
                         <tr>
                             <th scope="col" className="bg-secondary">#</th>
                             <th scope="col" className="bg-secondary">Email</th>
-                            <th scope="col" className="bg-secondary">Content</th>
+                            <th scope="col" className="bg-secondary">Contenuto</th>
                             <th scope="col" className="bg-secondary">User Name</th>
                             <th scope="col" className="bg-secondary">User Email</th>
                             <th scope="col" className="bg-secondary"></th>
