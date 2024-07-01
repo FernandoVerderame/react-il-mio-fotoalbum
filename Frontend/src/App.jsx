@@ -6,6 +6,7 @@ import PhotoDetail from "./pages/PhotoDetail.jsx";
 import CreatePhoto from "./pages/CreatePhoto.jsx";
 import EditPhoto from "./pages/EditPhoto.jsx";
 import Categories from "./pages/Categories.jsx";
+import CreateCategory from "./pages/CreateCategory.jsx";
 import Messages from "./pages/Messages.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
@@ -67,6 +68,12 @@ function App() {
 
               {/* Create */}
               <Route path="create" element={<CreatePhoto />} />
+            </Route>
+
+            {/* Categories */}
+            <Route path="categories">
+              {/* Create */}
+              <Route path="create" element={<CreateCategory />} />
             </Route>
 
             {/* Messages */}
