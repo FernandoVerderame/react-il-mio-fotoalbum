@@ -50,6 +50,7 @@ const Photos = () => {
 
                         {/* Nel caso non ci siano foto */}
                         <p className="text-center text-white h3">Nessuna foto trovata!</p>
+
                     </div>
                 ) : (
                     photos.map(({ id, title, slug, image, description, categories, visible, user }) => (
@@ -68,6 +69,7 @@ const Photos = () => {
                                     categories={categories}
                                     user={user}
                                 />
+
                             </Link>
                         </div>
                     ))
