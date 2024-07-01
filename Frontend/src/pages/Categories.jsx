@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { MdFiberNew as AddCategory } from "react-icons/md";
 import { AiOutlineClose as CloseIcon } from "react-icons/ai";
 import TableCategories from "../components/TableCategories/TableCategories.jsx";
+import DeleteModal from "../components/Modal/Modal.jsx";
 
 const Categories = () => {
 
@@ -27,8 +28,8 @@ const Categories = () => {
     // Chiamata per l'eliminazione
     const deleteCategory = async () => {
         if (categoryToDelete) {
-            await axios.delete(`/categories/${categoryToDelete}`);
-            setCategories(categories.filter(category => category.id !== categoryToDelete));
+            await axios.delete(`/categories/${categoryToDelete.id}`);
+            setCategories(categories.filter(category => category.id !== categoryToDelete.id));
             setDeleteMode(false);
         }
     }
@@ -50,19 +51,12 @@ const Categories = () => {
         <section id="categories" className="container my-5">
 
             {/* Modale eliminazione */}
-            <dialog ref={dialogRef}>
-                <div className="d-flex justify-content-between align-items-center">
-                    <h3>Sei sicuro?</h3>
-                    <CloseIcon onClick={() => setDeleteMode(false)} role='button' />
-                </div>
-                <p>Se procedi, eliminerai definitivamente la categoria.</p>
-                <button
-                    onClick={deleteCategory}
-                    className="btn btn-danger btn-sm"
-                >
-                    Elimina
-                </button>
-            </dialog>
+            <DeleteModal
+                dialogRef={dialogRef}
+                title={categoryToDelete?.name}
+                setDeleteMode={setDeleteMode}
+                deleteBtn={deleteCategory}
+            />
 
             <div className="d-flex justify-content-between align-items-center mb-5">
                 <h1 className="m-0 text-white">Categorie</h1>

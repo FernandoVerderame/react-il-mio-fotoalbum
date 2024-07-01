@@ -1,6 +1,12 @@
 import { MdDelete as DeleteBtn } from "react-icons/md";
 
 const TableCategories = ({ categories, setCategoryToDelete, setDeleteMode }) => {
+
+    const handleDeleteClick = (category) => {
+        setCategoryToDelete(category);
+        setDeleteMode(true);
+    }
+
     return (
         <table className="table table-hover table-dark w-50">
 
@@ -23,27 +29,26 @@ const TableCategories = ({ categories, setCategoryToDelete, setDeleteMode }) => 
                         <td colSpan="3" className="text-center text-white h3">Nessuna categoria trovata!</td>
                     </tr>
                 ) : (
-                    categories.map(({ id, name, color }, i) => (
+                    categories.map((category, i) => (
 
                         // Record della categoria
-                        <tr key={id}>
+                        <tr key={category.id}>
 
                             {/* Indice */}
                             <th scope="row">{i + 1}</th>
 
                             {/* Nome categoria */}
-                            <td>{name}</td>
+                            <td>{category.name}</td>
 
                             {/* Colore categoria */}
-                            <td><div className="badge-cat" style={{ backgroundColor: color }}></div></td>
+                            <td><div className="badge-cat" style={{ backgroundColor: category.color }}></div></td>
                             <td className="d-flex justify-content-end">
 
                                 {/* Bottone eliminazione */}
                                 <button
                                     onClick={(e) => {
                                         e.stopPropagation();
-                                        setCategoryToDelete(id);
-                                        setDeleteMode(true);
+                                        handleDeleteClick(category);
                                     }}
                                     className="btn btn-sm btn-danger"
                                 >
