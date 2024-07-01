@@ -3,8 +3,8 @@ import { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import PhotoCard from "../components/PhotoCard/PhotoCard.jsx";
 import { useAuth } from '../contexts/AuthContext';
-import { AiOutlineClose as CloseIcon } from "react-icons/ai";
 import PhotoInfo from "../components/PhotoInfo/PhotoInfo.jsx";
+import DeleteModal from "../components/Modal/Modal.jsx";
 
 const PhotoDetail = () => {
 
@@ -61,19 +61,12 @@ const PhotoDetail = () => {
         <section className="container my-5">
 
             {/* Modale eliminazione */}
-            <dialog ref={dialogRef}>
-                <div className="d-flex justify-content-between align-items-center">
-                    <h3>Sei sicuro?</h3>
-                    <CloseIcon onClick={() => setDeleteMode(false)} role='button' />
-                </div>
-                <p>Se procedi, eliminerai definitivamente la foto con titolo: "{photo?.title}".</p>
-                <button
-                    onClick={deletePhoto}
-                    className="btn btn-danger btn-sm"
-                >
-                    Elimina
-                </button>
-            </dialog>
+            <DeleteModal
+                dialogRef={dialogRef}
+                title={photo?.title}
+                setDeleteMode={setDeleteMode}
+                deletePhoto={deletePhoto}
+            />
 
             <div className="row">
                 <div className="col-4">
