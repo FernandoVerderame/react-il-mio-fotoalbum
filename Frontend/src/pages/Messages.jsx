@@ -5,10 +5,13 @@ import AccordionMessages from "../components/AccordionMessages/AccordionMessages
 
 const Messages = () => {
 
-    // Fetch dei messaggi
+    // useState dei messaggi
     const [messages, setMessages] = useState([]);
+
+    // useState del toggle
     const [expandedMessages, setExpandedMessages] = useState([]);
 
+    // Fetch dei messaggi
     const fetchMessages = async () => {
         const res = await axios.get('/messages');
         const newMessages = res.data;
@@ -19,9 +22,10 @@ const Messages = () => {
         fetchMessages();
     }, []);
 
-    // Eliminazione dei messaggi
+    // useState eliminazione del messaggio
     const [messageToDelete, setMessageToDelete] = useState(null);
 
+    // Chiamata per l'eliminazione del messaggio
     const deleteMessage = async () => {
         if (messageToDelete) {
             await axios.delete(`/messages/${messageToDelete}`);
@@ -30,7 +34,7 @@ const Messages = () => {
         }
     }
 
-    // Modale eliminazione
+    // Modale
     const [deleteMode, setDeleteMode] = useState(false);
 
     const dialogRef = useRef();
@@ -43,6 +47,7 @@ const Messages = () => {
         }
     }, [deleteMode]);
 
+    // Funzione per il toggle dell'accordion
     const toggleAccordion = (id) => {
         if (expandedMessages.includes(id)) {
             setExpandedMessages(expandedMessages.filter(msgId => msgId !== id));
@@ -51,6 +56,7 @@ const Messages = () => {
         }
     };
 
+    // Transizione dell'accordion
     const handleTransitionEnd = (event) => {
         event.target.style.height = '';
     };
@@ -58,7 +64,7 @@ const Messages = () => {
     return (
         <section id="messages" className="container my-5">
 
-            {/* DeleteBtn */}
+            {/* Modale eliminazione */}
             <dialog ref={dialogRef}>
                 <div className="d-flex justify-content-between align-items-center">
                     <h3>Sei sicuro?</h3>
