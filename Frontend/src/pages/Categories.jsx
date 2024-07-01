@@ -33,7 +33,7 @@ const Categories = () => {
         }
     }
 
-    // Modale eliminazione
+    // Modale
     const [deleteMode, setDeleteMode] = useState(false);
 
     const dialogRef = useRef();
@@ -49,7 +49,7 @@ const Categories = () => {
     return (
         <section id="categories" className="container my-5">
 
-            {/* DeleteBtn */}
+            {/* Modale eliminazione */}
             <dialog ref={dialogRef}>
                 <div className="d-flex justify-content-between align-items-center">
                     <h3>Sei sicuro?</h3>
