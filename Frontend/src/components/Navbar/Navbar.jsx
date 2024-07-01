@@ -19,17 +19,25 @@ const Navbar = () => {
                     <div className="center-nav">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0 fs-5 d-flex gap-3">
                             <li className="nav-item">
-                                <NavLink className="nav-link text-white" to={'/'}>Home</NavLink>
+                                <NavLink
+                                    className={({ isActive }) => `nav-link text-white ${isActive ? navbarStyle.active : ''}`}
+                                    to={'/'}>Home</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink className="nav-link text-white" to={'/photos'}>Album</NavLink>
+                                <NavLink
+                                    className={({ isActive }) => `nav-link text-white ${isActive ? navbarStyle.active : ''}`}
+                                    to={'/photos'}>Album</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink className="nav-link text-white" to={'/categories'}>Categorie</NavLink>
+                                <NavLink
+                                    className={({ isActive }) => `nav-link text-white ${isActive ? navbarStyle.active : ''}`}
+                                    to={'/categories'}>Categorie</NavLink>
                             </li>
                             {isLoggedIn &&
                                 <li className="nav-item">
-                                    <NavLink className="nav-link text-white" to={'/messages'}>Messaggi</NavLink>
+                                    <NavLink
+                                        className={({ isActive }) => `nav-link text-white ${isActive ? navbarStyle.active : ''}`}
+                                        to={'/messages'}>Messaggi</NavLink>
                                 </li>
                             }
                         </ul>
@@ -50,7 +58,7 @@ const Navbar = () => {
                     </div>
                 </div>
             </nav>
-        </header>
+        </header >
     );
 }
 
