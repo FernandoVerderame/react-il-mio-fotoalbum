@@ -65,7 +65,7 @@ const PhotoDetail = () => {
                 dialogRef={dialogRef}
                 title={photo?.title}
                 setDeleteMode={setDeleteMode}
-                deletePhoto={deletePhoto}
+                deleteBtn={deletePhoto}
             />
 
             <div className="row">
