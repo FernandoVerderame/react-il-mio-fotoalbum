@@ -7,9 +7,10 @@ import TableCategories from "../components/TableCategories/TableCategories.jsx";
 
 const Categories = () => {
 
-    // Fetch delle categorie
+    // useState delle categorie
     const [categories, setCategories] = useState([]);
 
+    // Fetch delle categorie
     const fetchCategories = async () => {
         const res = await axios.get('/categories');
         const newCategories = res.data;
@@ -20,9 +21,10 @@ const Categories = () => {
         fetchCategories();
     }, []);
 
-    // Eliminazione delle categorie
+    // useState dell'eliminazione della categoria
     const [categoryToDelete, setCategoryToDelete] = useState(null);
 
+    // Chiamata per l'eliminazione
     const deleteCategory = async () => {
         if (categoryToDelete) {
             await axios.delete(`/categories/${categoryToDelete}`);
@@ -64,7 +66,12 @@ const Categories = () => {
 
             <div className="d-flex justify-content-between align-items-center mb-5">
                 <h1 className="m-0 text-white">Categorie</h1>
-                <Link to="create" className="btn btn-primary d-flex align-items-center gap-1"><AddCategory className="fs-5" /> Categoria</Link>
+
+                {/* Aggiungi categoria */}
+                <Link to="create" className="btn btn-primary d-flex align-items-center gap-1">
+                    <AddCategory className="fs-5" /> Categoria
+                </Link>
+
             </div>
 
             <div className="d-flex justify-content-center">
