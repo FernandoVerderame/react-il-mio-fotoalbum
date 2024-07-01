@@ -44,7 +44,7 @@ const EditPhoto = () => {
 
     return (
         <>
-            <section id="form" className="d-flex align-items-center flex-column mt-5">
+            <section id="edit-photo-form" className="d-flex align-items-center flex-column justify-content-center wh-100">
                 {dataToEdit === null ?
                     <div>Loading...</div>
                     :

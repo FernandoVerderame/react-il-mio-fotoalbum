@@ -19,7 +19,7 @@ const CreatePhoto = () => {
     }
 
     return (
-        <section id="form" className="d-flex align-items-center flex-column mt-5">
+        <section id="create-photo-form" className="d-flex align-items-center flex-column">
             <PhotoForm
                 onSubmit={createPhoto}
             />
