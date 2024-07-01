@@ -68,3 +68,37 @@ table {
     height: 20px;
     border-radius: 50%;
 }
+
+.accordion-item {
+
+    .accordion-button {
+        &:focus {
+            box-shadow: none;
+        }
+
+        &:not(.collapsed) {
+            background-color: whitesmoke;
+        }
+
+        &:after {
+            font-weight: 900;
+            transform: rotate(180deg);
+            transition: transform 0.3s;
+        }
+
+        &.collapsed:after {
+            transform: rotate(0deg);
+        }
+    }
+
+    .accordion-collapse {
+        overflow: hidden;
+        transition: height 0.3s ease;
+    }
+
+    .accordion-body {
+        background-color: whitesmoke;
+        color: black;
+        padding: 1rem;
+    }
+}

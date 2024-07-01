@@ -7,6 +7,7 @@ const Messages = () => {
 
     // Fetch dei messaggi
     const [messages, setMessages] = useState([]);
+    const [expandedMessages, setExpandedMessages] = useState([]);
 
     const fetchMessages = async () => {
         const res = await axios.get('/messages');
@@ -42,10 +43,22 @@ const Messages = () => {
         }
     }, [deleteMode]);
 
+    const toggleAccordion = (id) => {
+        if (expandedMessages.includes(id)) {
+            setExpandedMessages(expandedMessages.filter(msgId => msgId !== id));
+        } else {
+            setExpandedMessages([...expandedMessages, id]);
+        }
+    };
+
+    const handleTransitionEnd = (event) => {
+        event.target.style.height = '';
+    };
+
     return (
         <section id="messages" className="container my-5">
             <div className="mb-5">
-                <h1 className="m-0 text-white">Messaggi</h1>
+                <h1 className="m-0 text-white">Dashboard Messaggi</h1>
             </div>
 
             <div className="d-flex justify-content-center">
@@ -65,33 +78,41 @@ const Messages = () => {
                     </button>
                 </dialog>
 
-                <table className="table table-hover table-dark w-75">
-                    <thead>
-                        <tr>
-                            <th scope="col" className="bg-secondary">#</th>
-                            <th scope="col" className="bg-secondary">Email</th>
-                            <th scope="col" className="bg-secondary">Contenuto</th>
-                            <th scope="col" className="bg-secondary">User Name</th>
-                            <th scope="col" className="bg-secondary">User Email</th>
-                            <th scope="col" className="bg-secondary"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {messages.length === 0 ? (
-                            <tr>
-                                <td colSpan="3" className="text-center text-white h3">Nessun messaggio ricevuto!</td>
-                            </tr>
-                        ) : (
-                            messages.map(({ id, email, content, user }, i) => (
-                                <tr key={id}>
-                                    <th scope="row">{i + 1}</th>
-                                    <td>{email}</td>
-                                    <td>{content}</td>
-                                    <td>{user.name}</td>
-                                    <td>{user.email}</td>
-                                    <td className="d-flex justify-content-end">
+                <div className="accordion w-100" id="accordionMessages">
+                    {messages.length === 0 ? (
+                        <div className="text-center text-white h3">Nessun messaggio ricevuto!</div>
+                    ) : (
+                        messages.map(({ id, email, content, user }, i) => (
+                            <div className="accordion-item" key={id}>
+                                <h2 className="accordion-header" id={`heading${id}`}>
+                                    <button
+                                        className={`accordion-button ${expandedMessages.includes(id) ? '' : 'collapsed'}`}
+                                        type="button"
+                                        onClick={() => toggleAccordion(id)}
+                                        aria-expanded={expandedMessages.includes(id)}
+                                        aria-controls={`collapse${id}`}
+                                    >
+                                        <div className="d-flex w-100 justify-content-between">
+                                            <span><strong>#{i + 1}</strong></span>
+                                            <span>Email: <strong>{email}</strong></span>
+                                            <span>User Name: <strong>{user.name}</strong></span>
+                                            <span className="me-3">User Email: <strong>{user.email}</strong></span>
+                                        </div>
+                                    </button>
+                                </h2>
+                                <div
+
+                                    className={`accordion-collapse collapse ${expandedMessages.includes(id) ? 'show' : ''}`}
+                                    aria-labelledby={`heading${id}`}
+                                    data-bs-parent="#accordionMessages"
+                                    style={{ height: expandedMessages.includes(id) ? 'auto' : '0' }}
+                                    onTransitionEnd={handleTransitionEnd}
+                                >
+                                    <div className="accordion-body d-flex justify-content-between align-items-center gap-5">
+                                        <p>{content}</p>
                                         <button
-                                            onClick={() => {
+                                            onClick={(e) => {
+                                                e.stopPropagation();
                                                 setMessageToDelete(id);
                                                 setDeleteMode(true);
                                             }}
@@ -99,12 +120,12 @@ const Messages = () => {
                                         >
                                             <DeleteBtn className="fs-5" />
                                         </button>
-                                    </td>
-                                </tr>
-                            ))
-                        )}
-                    </tbody>
-                </table>
+                                    </div>
+                                </div>
+                            </div>
+                        ))
+                    )}
+                </div>
             </div>
         </section >
     );
