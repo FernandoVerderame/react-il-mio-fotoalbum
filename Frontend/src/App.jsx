@@ -5,12 +5,13 @@ import Photos from "./pages/Photos.jsx";
 import PhotoDetail from "./pages/PhotoDetail.jsx";
 import CreatePhoto from "./pages/CreatePhoto.jsx";
 import EditPhoto from "./pages/EditPhoto.jsx";
+import Categories from "./pages/Categories.jsx";
+import Messages from "./pages/Messages.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import { GlobalProvider } from "./contexts/GlobalContext.jsx";
 import { AuthProvider } from "./contexts/AuthContext.jsx";
 import PrivatePage from "./middlewares/PrivatePage.jsx";
-import Categories from "./pages/Categories.jsx";
 
 function App() {
 
@@ -67,6 +68,13 @@ function App() {
               {/* Create */}
               <Route path="create" element={<CreatePhoto />} />
             </Route>
+
+            {/* Messages */}
+            <Route path="messages">
+              {/* Index */}
+              <Route index element={<Messages />} />
+            </Route>
+
           </Route>
 
         </Routes>
