@@ -16,7 +16,7 @@ const Navbar = () => {
                     </NavLink>
                 </div>
                 <div className="center-nav">
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0 fs-5">
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0 fs-5 d-flex gap-3">
                         <li className="nav-item">
                             <NavLink className="nav-link text-white" to={'/'}>Home</NavLink>
                         </li>
