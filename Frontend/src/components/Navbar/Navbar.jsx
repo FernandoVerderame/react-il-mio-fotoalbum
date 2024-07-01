@@ -26,6 +26,11 @@ const Navbar = () => {
                         <li className="nav-item">
                             <NavLink className="nav-link text-white" to={'/categories'}>Categorie</NavLink>
                         </li>
+                        {isLoggedIn &&
+                            <li className="nav-item">
+                                <NavLink className="nav-link text-white" to={'/messages'}>Messaggi</NavLink>
+                            </li>
+                        }
                     </ul>
                 </div>
                 <div className="right-nav">
