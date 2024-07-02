@@ -15,6 +15,7 @@ const PhotoDetail = () => {
     // Recupero useNavigate da react router dom
     const navigate = useNavigate();
 
+    // useState Alert
     const [alert, setAlert] = useState(location.state?.alert || null);
 
     useEffect(() => {
