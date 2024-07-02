@@ -109,6 +109,7 @@ const index = async (req, res) => {
             userId = user.id;
         }
 
+        // Filtro dello user
         if (user === 'true' && userId) {
             where.userId = userId
         }
