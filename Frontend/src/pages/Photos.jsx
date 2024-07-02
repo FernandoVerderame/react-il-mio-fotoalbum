@@ -6,6 +6,7 @@ import PhotoCard from "../components/PhotoCard/PhotoCard.jsx";
 import SearchBar from "../components/SearchBar/SearchBar.jsx";
 import Alert from "../components/Alert/Alert.jsx";
 import { useAuth } from "../contexts/AuthContext.jsx";
+import Switch from "../components/Switch/Switch.jsx";
 
 const Photos = () => {
 
@@ -71,17 +72,10 @@ const Photos = () => {
 
                     {/* Filtro per le foto dello User */}
                     {user &&
-                        <div className="form-check form-switch">
-                            <input
-                                type="checkbox"
-                                role="switch"
-                                id="userFilter"
-                                checked={userFilter}
-                                onChange={e => setUserFilter(e.target.checked)}
-                                className="form-check-input"
-                            />
-                            <label className="form-check-label text-white" htmlFor="userFilter">User Foto</label>
-                        </div>
+                        <Switch
+                            checked={userFilter}
+                            onChange={e => setUserFilter(e.target.checked)}
+                        />
                     }
                 </div>
 
