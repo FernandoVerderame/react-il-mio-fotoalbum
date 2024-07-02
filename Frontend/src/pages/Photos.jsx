@@ -37,7 +37,7 @@ const Photos = () => {
     const [userFilter, setUserFilter] = useState('');
 
     // Fetch delle foto
-    const fetchPhotos = async (title = '') => {
+    const fetchPhotos = async () => {
         const res = await axios.get(`/photos`, { params: { title: searchTitle, user: userFilter } });
         const newPhotos = res.data.data;
         setPhotos(newPhotos);
@@ -46,13 +46,6 @@ const Photos = () => {
     useEffect(() => {
         fetchPhotos();
     }, [searchTitle, userFilter]);
-
-    // // onChange in tempo reale tramite la search-bar
-    // const handleSearch = (e) => {
-    //     setSearchTitle(e.target.value);
-    //     setUserFilter(e.target.checked);
-    //     fetchPhotos(e.target.value);
-    // }
 
     return (
         <section className="container my-5">
