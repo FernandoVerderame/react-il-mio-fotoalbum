@@ -11,6 +11,7 @@ const CreateCategory = () => {
     const createCategory = async formData => {
         const res = await axios.post('/categories', formData);
 
+        // Redirect alla tabella delle categorie
         if (res.status < 400) {
             navigate('/categories');
         }

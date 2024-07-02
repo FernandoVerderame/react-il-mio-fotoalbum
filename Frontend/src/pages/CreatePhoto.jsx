@@ -4,8 +4,10 @@ import { Link, useNavigate } from "react-router-dom";
 
 const CreatePhoto = () => {
 
+    // Recupero useNavigate da react router dom
     const navigate = useNavigate();
 
+    // Chiamata api per la creazione di una foto
     const createPhoto = async formData => {
         const res = await axios.post(`/photos`, formData, {
             headers: {
@@ -13,6 +15,7 @@ const CreatePhoto = () => {
             }
         });
 
+        // Redirect alla foto appena creata
         if (res.status < 400) {
             navigate(`/photos/${res.data.slug}`);
         }
@@ -20,9 +23,13 @@ const CreatePhoto = () => {
 
     return (
         <section id="create-photo-form" className="d-flex align-items-center flex-column">
+
+            {/* Form della foto */}
             <PhotoForm
                 onSubmit={createPhoto}
             />
+
+            {/* Bottone per tornare indietro */}
             <Link to="../" relative="path" className="btn btn-secondary">Torna indietro</Link>
         </section>
     );
