@@ -1,15 +1,32 @@
 import axios from "../utils/axiosClient.js";
 import { useEffect, useState, useRef } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import PhotoCard from "../components/PhotoCard/PhotoCard.jsx";
 import { useAuth } from '../contexts/AuthContext';
 import PhotoInfo from "../components/PhotoInfo/PhotoInfo.jsx";
 import DeleteModal from "../components/Modal/Modal.jsx";
+import Alert from "../components/Alert/Alert.jsx";
 
 const PhotoDetail = () => {
 
     // Recupero useNavigate da react router dom
+    const location = useLocation();
+
+    // Recupero useNavigate da react router dom
     const navigate = useNavigate();
+
+    const [alert, setAlert] = useState(location.state?.alert || null);
+
+    useEffect(() => {
+        if (alert) {
+            navigate(location.pathname, { replace: true, state: {} });
+        }
+    }, [alert, navigate, location.pathname]);
+
+    const closeAlert = () => {
+        setAlert(null);
+    };
+
 
     // Recupero lo slug dai parametri
     const { slug } = useParams();
@@ -59,6 +76,15 @@ const PhotoDetail = () => {
 
     return (
         <section className="container my-5">
+
+            {/* Mostra l'alert se esiste */}
+            {alert && (
+                <Alert
+                    type={alert.type}
+                    message={alert.message}
+                    onClose={closeAlert}
+                />
+            )}
 
             {/* Modale eliminazione */}
             <DeleteModal
