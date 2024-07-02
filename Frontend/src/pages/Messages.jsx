@@ -3,8 +3,12 @@ import { useEffect, useRef, useState } from "react";
 import { AiOutlineClose as CloseIcon } from "react-icons/ai";
 import AccordionMessages from "../components/AccordionMessages/AccordionMessages.jsx";
 import DeleteModal from "../components/Modal/Modal.jsx";
+import Alert from "../components/Alert/Alert.jsx";
 
 const Messages = () => {
+
+    // useState Alert
+    const [alert, setAlert] = useState(null);
 
     // useState dei messaggi
     const [messages, setMessages] = useState([]);
@@ -32,6 +36,7 @@ const Messages = () => {
             await axios.delete(`/messages/${messageToDelete}`);
             setMessages(messages.filter(message => message.id !== messageToDelete));
             setDeleteMode(false);
+            setAlert({ type: 'error', message: `Messaggio con id:"${messageToDelete}" eliminato con successo!` });
         }
     }
 
@@ -64,6 +69,15 @@ const Messages = () => {
 
     return (
         <section id="messages" className="container my-5">
+
+            {/* Mostra l'alert se esiste */}
+            {alert && (
+                <Alert
+                    type={alert.type}
+                    message={alert.message}
+                    onClose={() => setAlert(null)}
+                />
+            )}
 
             {/* Modale eliminazione */}
             <DeleteModal
