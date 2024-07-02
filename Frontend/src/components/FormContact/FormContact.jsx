@@ -36,7 +36,7 @@ const FormContact = ({ initialData, onSubmit }) => {
     return (
         <>
             <section id="form-contact" className="d-flex justify-content-center align-items-center py-5">
-                <div className="card w-25">
+                <div className="card w-50">
                     <div className="card-header">
                         <div className="card-title text-center">
                             <h1 className="h2 m-0 d-flex align-items-center justify-content-center gap-2"><MessageIcon /><span>Messaggi</span></h1>
