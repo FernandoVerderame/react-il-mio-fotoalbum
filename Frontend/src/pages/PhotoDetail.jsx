@@ -23,6 +23,8 @@ const PhotoDetail = () => {
         }
     }, [alert, navigate, location.pathname]);
 
+
+    // Chiusura Alert
     const closeAlert = () => {
         setAlert(null);
     };
@@ -55,7 +57,9 @@ const PhotoDetail = () => {
     // Funzione per la cancellazione
     const deletePhoto = async () => {
         await axios.delete(`/photos/${slug}`);
-        navigate('/photos');
+        navigate('/photos', {
+            state: { alert: { type: 'error', message: 'Foto eliminata con successo!' } }
+        });
     }
 
     // Modale
