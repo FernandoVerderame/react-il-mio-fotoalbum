@@ -13,7 +13,9 @@ const CreateCategory = () => {
 
         // Redirect alla tabella delle categorie
         if (res.status < 400) {
-            navigate('/categories');
+            navigate('/categories', {
+                state: { alert: { type: 'success', message: 'Categoria creata con successo!' } }
+            });
         }
     }
 

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "../utils/axiosClient.js";
 import { useEffect, useRef, useState } from "react";
 import { MdFiberNew as AddCategory } from "react-icons/md";
@@ -8,8 +8,20 @@ import Alert from '../components/Alert/Alert.jsx';
 
 const Categories = () => {
 
+    // Recupero useNavigate da react router dom
+    const location = useLocation();
+
+    // Recupero useNavigate da react router dom
+    const navigate = useNavigate();
+
     // useState Alert
-    const [alert, setAlert] = useState(null);
+    const [alert, setAlert] = useState(location.state?.alert || null);
+
+    useEffect(() => {
+        if (alert) {
+            navigate(location.pathname, { replace: true, state: {} });
+        }
+    }, [alert, navigate, location.pathname]);
 
     // useState delle categorie
     const [categories, setCategories] = useState([]);
