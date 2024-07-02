@@ -2,11 +2,14 @@ import { Link } from "react-router-dom";
 import axios from "../utils/axiosClient.js";
 import { useEffect, useRef, useState } from "react";
 import { MdFiberNew as AddCategory } from "react-icons/md";
-import { AiOutlineClose as CloseIcon } from "react-icons/ai";
 import TableCategories from "../components/TableCategories/TableCategories.jsx";
 import DeleteModal from "../components/Modal/Modal.jsx";
+import Alert from '../components/Alert/Alert.jsx';
 
 const Categories = () => {
+
+    // useState Alert
+    const [alert, setAlert] = useState(null);
 
     // useState delle categorie
     const [categories, setCategories] = useState([]);
@@ -31,6 +34,7 @@ const Categories = () => {
             await axios.delete(`/categories/${categoryToDelete.id}`);
             setCategories(categories.filter(category => category.id !== categoryToDelete.id));
             setDeleteMode(false);
+            setAlert({ type: 'error', message: `Categoria "${categoryToDelete.name}" eliminata con successo!` });
         }
     }
 
@@ -49,6 +53,15 @@ const Categories = () => {
 
     return (
         <section id="categories" className="container my-5">
+
+            {/* Mostra l'alert se esiste */}
+            {alert && (
+                <Alert
+                    type={alert.type}
+                    message={alert.message}
+                    onClose={() => setAlert(null)}
+                />
+            )}
 
             {/* Modale eliminazione */}
             <DeleteModal
