@@ -5,12 +5,16 @@ import PhotoForm from "../components/FormPhoto/FormPhoto.jsx";
 
 const EditPhoto = () => {
 
+    // Recupero lo slug dai parametri
     const { slug } = useParams();
 
+    // Recupero useNavigate da react router dom
     const navigate = useNavigate();
 
+    // useState della singola foto da editare
     const [dataToEdit, setDataToEdit] = useState(null);
 
+    // Fecth dei dati della singola foto
     const fetchDataToEdit = async () => {
         const url = `/photos/${slug}`;
         const { data: p } = await axios.get(url);
@@ -30,6 +34,7 @@ const EditPhoto = () => {
         }
     }, [slug]);
 
+    // Funzione per l'update della foto
     const updatePhoto = async formData => {
         const res = await axios.put(`/photos/${slug}`, formData, {
             headers: {
@@ -37,6 +42,7 @@ const EditPhoto = () => {
             }
         });
 
+        // Redirect alla show della foto appena editata
         if (res.status < 400) {
             navigate(`/photos/${res.data.slug}`);
         }
@@ -48,11 +54,15 @@ const EditPhoto = () => {
                 {dataToEdit === null ?
                     <div>Loading...</div>
                     :
+
+                    // Form della foto
                     <PhotoForm
                         initialData={dataToEdit}
                         onSubmit={updatePhoto}
                     />
                 }
+
+                {/* Bottone per tornare indietro */}
                 <Link to="../" relative="path" className="btn btn-secondary">Annulla</Link>
             </section>
         </>
