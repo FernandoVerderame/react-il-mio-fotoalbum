@@ -2,7 +2,7 @@ import { AiOutlineClose as CloseIcon } from "react-icons/ai";
 
 const DeleteModal = ({ dialogRef, setDeleteMode, deleteBtn, title }) => {
     return (
-        <dialog ref={dialogRef}>
+        <dialog ref={dialogRef} className="rounded border border-danger">
             <div className="d-flex justify-content-between align-items-center">
                 <h3>Sei sicuro?</h3>
                 <CloseIcon onClick={() => setDeleteMode(false)} role='button' />
