@@ -22,11 +22,6 @@ const Photos = () => {
         }
     }, [alert, navigate, location.pathname]);
 
-    // Chiusura Alert
-    const closeAlert = () => {
-        setAlert(null);
-    };
-
     // useState delle foto
     const [photos, setPhotos] = useState([]);
 
@@ -58,7 +53,7 @@ const Photos = () => {
                 <Alert
                     type={alert.type}
                     message={alert.message}
-                    onClose={closeAlert}
+                    onClose={() => setAlert(null)}
                 />
             )}
 

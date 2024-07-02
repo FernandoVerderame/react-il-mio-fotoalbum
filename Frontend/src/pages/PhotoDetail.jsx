@@ -24,13 +24,6 @@ const PhotoDetail = () => {
         }
     }, [alert, navigate, location.pathname]);
 
-
-    // Chiusura Alert
-    const closeAlert = () => {
-        setAlert(null);
-    };
-
-
     // Recupero lo slug dai parametri
     const { slug } = useParams();
 
@@ -87,7 +80,7 @@ const PhotoDetail = () => {
                 <Alert
                     type={alert.type}
                     message={alert.message}
-                    onClose={closeAlert}
+                    onClose={() => setAlert(null)}
                 />
             )}
 
