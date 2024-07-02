@@ -7,6 +7,7 @@ import SearchBar from "../components/SearchBar/SearchBar.jsx";
 import Alert from "../components/Alert/Alert.jsx";
 import { useAuth } from "../contexts/AuthContext.jsx";
 import Switch from "../components/Switch/Switch.jsx";
+import Pagination from "../components/Pagination/Pagination.jsx";
 
 const Photos = () => {
 
@@ -18,6 +19,10 @@ const Photos = () => {
 
     // Recupero useNavigate da react router dom
     const navigate = useNavigate();
+
+    // useState paginazione
+    const [page, setPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
 
     // useState Alert
     const [alert, setAlert] = useState(location.state?.alert || null);
@@ -39,17 +44,23 @@ const Photos = () => {
 
     // Fetch delle foto
     const fetchPhotos = async () => {
-        const res = await axios.get(`/photos`, { params: { title: searchTitle, user: userFilter } });
+        const res = await axios.get(`/photos`, { params: { title: searchTitle, user: userFilter, page } });
         const newPhotos = res.data.data;
+        console.log('Fetched photos:', newPhotos); // Debug
         setPhotos(newPhotos);
+        setTotalPages(res.data.totalPages);
     }
 
     useEffect(() => {
-        fetchPhotos();
-    }, [searchTitle, userFilter]);
+        fetchPhotos(page);
+    }, [searchTitle, userFilter, page]);
+
+    const handlePageChange = (newPage) => {
+        setPage(newPage);
+    };
 
     return (
-        <section className="container my-5">
+        <section className="container my-5 p-0">
 
             {/* Mostra l'alert se esiste */}
             {alert && (
@@ -82,7 +93,7 @@ const Photos = () => {
                 {/* Aggiungi foto */}
                 <Link to="create" className="btn btn-primary d-flex align-items-center gap-1"><AddPhoto className="fs-5" /> Foto</Link>
             </div>
-            <div className="row g-5">
+            <div className="row g-4">
                 {photos.length === 0 ? (
                     <div className="col-12">
 
@@ -113,6 +124,14 @@ const Photos = () => {
                     ))
                 )}
             </div>
+
+            {/* Paginazione */}
+            <Pagination
+                page={page}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+            />
+
         </section>
     );
 }
