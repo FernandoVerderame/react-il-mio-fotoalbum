@@ -42,9 +42,11 @@ const EditPhoto = () => {
             }
         });
 
-        // Redirect alla show della foto appena editata
         if (res.status < 400) {
-            navigate(`/photos/${res.data.slug}`);
+            // Redirect alla foto appena modificata con messaggio di successo come stato
+            navigate(`/photos/${res.data.slug}`, {
+                state: { alert: { type: 'success', message: 'Foto modificata con successo!' } }
+            });
         }
     }
 

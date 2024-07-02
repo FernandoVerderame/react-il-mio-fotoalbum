@@ -15,9 +15,11 @@ const CreatePhoto = () => {
             }
         });
 
-        // Redirect alla foto appena creata
         if (res.status < 400) {
-            navigate(`/photos/${res.data.slug}`);
+            // Redirect alla foto appena creata con messaggio di successo come stato
+            navigate(`/photos/${res.data.slug}`, {
+                state: { alert: { type: 'success', message: 'Foto creata con successo!' } }
+            });
         }
     }
 
