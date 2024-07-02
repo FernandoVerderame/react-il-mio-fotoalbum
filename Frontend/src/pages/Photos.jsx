@@ -5,8 +5,12 @@ import { MdFiberNew as AddPhoto } from "react-icons/md";
 import PhotoCard from "../components/PhotoCard/PhotoCard.jsx";
 import SearchBar from "../components/SearchBar/SearchBar.jsx";
 import Alert from "../components/Alert/Alert.jsx";
+import { useAuth } from "../contexts/AuthContext.jsx";
 
 const Photos = () => {
+
+    // Importo l'autenticazione dello User
+    const { user } = useAuth();
 
     // Recupero useNavigate da react router dom
     const location = useLocation();
@@ -14,6 +18,7 @@ const Photos = () => {
     // Recupero useNavigate da react router dom
     const navigate = useNavigate();
 
+    // useState Alert
     const [alert, setAlert] = useState(location.state?.alert || null);
 
     useEffect(() => {
@@ -28,22 +33,26 @@ const Photos = () => {
     // useState per la ricerca delle foto tramite il titolo
     const [searchTitle, setSearchTitle] = useState('');
 
+    // useState per il filtro delle foto del singolo user
+    const [userFilter, setUserFilter] = useState('');
+
     // Fetch delle foto
     const fetchPhotos = async (title = '') => {
-        const res = await axios.get(`/photos`, { params: { title } });
+        const res = await axios.get(`/photos`, { params: { title: searchTitle, user: userFilter } });
         const newPhotos = res.data.data;
         setPhotos(newPhotos);
     }
 
     useEffect(() => {
         fetchPhotos();
-    }, []);
+    }, [searchTitle, userFilter]);
 
-    // onChange in tempo reale tramite la search-bar
-    const handleSearch = (e) => {
-        setSearchTitle(e.target.value);
-        fetchPhotos(e.target.value);
-    }
+    // // onChange in tempo reale tramite la search-bar
+    // const handleSearch = (e) => {
+    //     setSearchTitle(e.target.value);
+    //     setUserFilter(e.target.checked);
+    //     fetchPhotos(e.target.value);
+    // }
 
     return (
         <section className="container my-5">
@@ -60,11 +69,28 @@ const Photos = () => {
             <div className="d-flex justify-content-between align-items-center mb-5">
                 <h1 className="m-0 text-white">Album</h1>
 
-                {/* SearchBar */}
-                <SearchBar
-                    value={searchTitle}
-                    onChange={handleSearch}
-                />
+                <div className="d-flex align-items-center gap-3">
+                    {/* SearchBar */}
+                    <SearchBar
+                        value={searchTitle}
+                        onChange={e => setSearchTitle(e.target.value)}
+                    />
+
+                    {/* Filtro per le foto dello User */}
+                    {user &&
+                        <div className="form-check form-switch">
+                            <input
+                                type="checkbox"
+                                role="switch"
+                                id="userFilter"
+                                checked={userFilter}
+                                onChange={e => setUserFilter(e.target.checked)}
+                                className="form-check-input"
+                            />
+                            <label className="form-check-label text-white" htmlFor="userFilter">User Foto</label>
+                        </div>
+                    }
+                </div>
 
                 {/* Aggiungi foto */}
                 <Link to="create" className="btn btn-primary d-flex align-items-center gap-1"><AddPhoto className="fs-5" /> Foto</Link>
