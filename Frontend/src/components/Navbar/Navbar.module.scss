@@ -1,6 +1,7 @@
 nav {
     height: 60px;
-    background-image: linear-gradient(#333333, #666666);
+    // background-image: linear-gradient(#333333, #666666);
+    background-color: white;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 
     .logo {
@@ -12,6 +13,28 @@ nav {
 
     .active {
         font-weight: 400;
-        color: #0D6EFD !important;
+        color: goldenrod !important;
+    }
+}
+
+.notifications {
+    position: relative;
+    font-size: 24px;
+    margin-right: 15px;
+
+    .numberNot {
+        position: absolute;
+        top: 0;
+        right: -10px;
+        font-weight: 600;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background-color: red;
+        font-size: 16px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }
