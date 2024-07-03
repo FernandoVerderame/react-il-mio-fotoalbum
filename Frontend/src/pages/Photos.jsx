@@ -126,11 +126,13 @@ const Photos = () => {
             </div>
 
             {/* Paginazione */}
-            <Pagination
-                page={page}
-                totalPages={totalPages}
-                onPageChange={handlePageChange}
-            />
+            {photos.length !== 0 &&
+                <Pagination
+                    page={page}
+                    totalPages={totalPages}
+                    onPageChange={handlePageChange}
+                />
+            }
 
         </section>
     );
