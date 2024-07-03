@@ -42,6 +42,7 @@ const index = async (req, res, next) => {
         const userId = user.id;
 
         let messages;
+        let messageCount;
 
         if (user.isSuperAdmin) {
 
@@ -57,6 +58,7 @@ const index = async (req, res, next) => {
                     }
                 }
             });
+            messageCount = await prisma.message.count();
 
         } else {
 
@@ -73,9 +75,13 @@ const index = async (req, res, next) => {
                     }
                 }
             });
+            messageCount = await prisma.message.count({ where: { userId } });
         }
 
-        res.status(200).send(messages);
+        res.json({
+            data: messages,
+            messageCount
+        })
     } catch (err) {
         errorHandler(err, req, res);
     }
