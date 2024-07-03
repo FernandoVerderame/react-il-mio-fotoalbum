@@ -19,7 +19,7 @@ const Messages = () => {
     // Fetch dei messaggi
     const fetchMessages = async () => {
         const res = await axios.get('/messages');
-        const newMessages = res.data;
+        const newMessages = res.data.data;
         setMessages(newMessages);
     }
 
