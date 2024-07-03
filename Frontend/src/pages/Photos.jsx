@@ -93,7 +93,7 @@ const Photos = () => {
                 {/* Aggiungi foto */}
                 <Link to="create" className="btn btn-primary d-flex align-items-center gap-1"><AddPhoto className="fs-5" /> Foto</Link>
             </div>
-            <div className="row g-4">
+            <div className="row g-5">
                 {photos.length === 0 ? (
                     <div className="col-12">
 
