@@ -1,6 +1,6 @@
 import { MdDelete as DeleteBtn } from "react-icons/md";
 
-const TableCategories = ({ categories, setCategoryToDelete, setDeleteMode }) => {
+const TableCategories = ({ categories, setCategoryToDelete, setDeleteMode, isLoggedIn }) => {
 
     const handleDeleteClick = (category) => {
         setCategoryToDelete(category);
@@ -16,7 +16,9 @@ const TableCategories = ({ categories, setCategoryToDelete, setDeleteMode }) => 
                     <th scope="col" className="bg-secondary">#</th>
                     <th scope="col" className="bg-secondary">Nome</th>
                     <th scope="col" className="bg-secondary">Colore</th>
-                    <th scope="col" className="bg-secondary"></th>
+                    {isLoggedIn &&
+                        <th scope="col" className="bg-secondary"></th>
+                    }
                 </tr>
             </thead>
 
@@ -42,20 +44,22 @@ const TableCategories = ({ categories, setCategoryToDelete, setDeleteMode }) => 
 
                             {/* Colore categoria */}
                             <td><div className="badge-cat" style={{ backgroundColor: category.color }}></div></td>
-                            <td className="d-flex justify-content-end">
 
-                                {/* Bottone eliminazione */}
-                                <button
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        handleDeleteClick(category);
-                                    }}
-                                    className="btn btn-sm btn-danger"
-                                >
-                                    <DeleteBtn className="fs-5" />
-                                </button>
+                            {/* Bottone eliminazione */}
+                            {isLoggedIn &&
+                                <td className="d-flex justify-content-end">
+                                    <button
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            handleDeleteClick(category);
+                                        }}
+                                        className="btn btn-sm btn-danger"
+                                    >
+                                        <DeleteBtn className="fs-5" />
+                                    </button>
+                                </td>
+                            }
 
-                            </td>
                         </tr>
                     ))
                 )}

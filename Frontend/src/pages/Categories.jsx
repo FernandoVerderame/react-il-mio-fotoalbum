@@ -5,8 +5,12 @@ import { MdFiberNew as AddCategory } from "react-icons/md";
 import TableCategories from "../components/TableCategories/TableCategories.jsx";
 import DeleteModal from "../components/Modal/Modal.jsx";
 import Alert from '../components/Alert/Alert.jsx';
+import { useAuth } from '../contexts/AuthContext';
 
 const Categories = () => {
+
+    // Autenticazione
+    const { isLoggedIn } = useAuth();
 
     // Recupero useNavigate da react router dom
     const location = useLocation();
@@ -84,7 +88,7 @@ const Categories = () => {
             />
 
             <div className="d-flex justify-content-between align-items-center mb-5">
-                <h1 className="m-0 text-white">Categorie</h1>
+                <h1 className="m-0 color-title">Categorie</h1>
 
                 {/* Aggiungi categoria */}
                 <Link to="create" className="btn btn-primary d-flex align-items-center gap-1">
@@ -100,6 +104,7 @@ const Categories = () => {
                     categories={categories}
                     setCategoryToDelete={setCategoryToDelete}
                     setDeleteMode={setDeleteMode}
+                    isLoggedIn={isLoggedIn}
                 />
 
             </div>
