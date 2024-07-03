@@ -16,6 +16,9 @@ const paramID = require('../validations/generic.js');
 // Autenticazione Token
 const authenticateToken = require('../middlewares/authToken.js');
 
+// Autenticazione Admin
+const adminPermission = require("../middlewares/authAdmin.js");
+
 // Importo le funzioni dei messaggi
 const {
     store,
@@ -29,6 +32,9 @@ router.post('/', validator(bodyData), store);
 
 // ? Rotte Protette
 router.use(authenticateToken);
+
+// ! Rotte Admin
+router.use(adminPermission);
 
 // Rotta index
 router.get('/', index);
