@@ -22,7 +22,7 @@ const Home = () => {
 
             {/* Jumbotron */}
             <section id="jumbotron">
-                <h1 className="text-white mb-0">"Capture the moment!"</h1>
+                <h1 className="mb-0 text-center home-title">"Osservando il mondo, <br /> attraverso gli occhi del mio obiettivo!"</h1>
             </section>
 
             <div className="container">
