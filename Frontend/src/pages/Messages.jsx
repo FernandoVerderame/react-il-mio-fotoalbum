@@ -88,7 +88,7 @@ const Messages = () => {
             />
 
             <div className="mb-5">
-                <h1 className="m-0 text-white">Dashboard Messaggi</h1>
+                <h1 className="m-0 color-title">Dashboard Messaggi</h1>
             </div>
 
             <div className="d-flex justify-content-center">

@@ -71,7 +71,7 @@ const Photos = () => {
             )}
 
             <div className="d-flex justify-content-between align-items-center mb-5">
-                <h1 className="m-0 text-white">Album</h1>
+                <h1 className="m-0 color-title">Album</h1>
 
                 <div className="d-flex align-items-center gap-3">
                     {/* SearchBar */}
