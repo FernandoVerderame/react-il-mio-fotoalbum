@@ -20,7 +20,9 @@ const Navbar = () => {
     }
 
     useEffect(() => {
-        fetchMessageCount();
+        if (isLoggedIn) {
+            fetchMessageCount();
+        }
     }, [isLoggedIn]);
 
     return (
