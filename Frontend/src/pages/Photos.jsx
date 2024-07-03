@@ -46,7 +46,6 @@ const Photos = () => {
     const fetchPhotos = async () => {
         const res = await axios.get(`/photos`, { params: { title: searchTitle, user: userFilter, page } });
         const newPhotos = res.data.data;
-        console.log('Fetched photos:', newPhotos); // Debug
         setPhotos(newPhotos);
         setTotalPages(res.data.totalPages);
     }
