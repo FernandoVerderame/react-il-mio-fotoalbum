@@ -37,9 +37,12 @@ const FormContact = ({ initialData, onSubmit }) => {
 
     return (
         <>
-            <section id="form-contact" className=" py-5">
+            <section id="form-contact">
 
                 <div className="row">
+                    <div className="col-12">
+                        <h2 className="text-center mb-5 text-white h1">Collabora con noi</h2>
+                    </div>
                     <div className="col-6 d-flex justify-content-center">
                         <img src={imageContact} alt="bg-contact" className={`img-fluid ${formContactStyle.image}`} />
                     </div>
