@@ -2,6 +2,7 @@ import axios from "../utils/axiosClient.js";
 import FormContact from "../components/FormContact/FormContact.jsx";
 import Alert from '../components/Alert/Alert.jsx';
 import { useState } from "react";
+import Carousel from "../components/Carousel/Carousel.jsx";
 
 const Home = () => {
 
@@ -24,6 +25,8 @@ const Home = () => {
             <section id="jumbotron">
                 <h1 className="mb-0 text-center home-title">"Osservando il mondo, <br /> attraverso gli occhi del mio obiettivo!"</h1>
             </section>
+
+            <Carousel />
 
             <div className="container">
 
